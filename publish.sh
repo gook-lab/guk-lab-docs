@@ -30,11 +30,29 @@ REPOS=(
 say() { printf '\n\033[1m%s\033[0m\n' "$*"; }
 run() { if [ "$DRY" = "--dry-run" ]; then echo "  [dry] $*"; else "$@"; fi; }
 
-# 인증 확인 — gook-lab 계정이 없으면 여기서 멈춘다
+# 인증 — gook-lab 계정으로 전환하고, 끝나면 원래 계정으로 되돌린다.
+# (회사 작업이 실수로 gook-lab 으로 나가면 곤란하다)
 if ! gh auth status 2>&1 | grep -q "account $OWNER"; then
-  echo "✗ gh 에 '$OWNER' 계정이 없습니다. 먼저 실행하세요:"
-  echo "    gh auth login    # $OWNER 계정 선택"
+  echo "✗ gh 에 '$OWNER' 계정이 없습니다. 최초 1회만 직접 로그인하세요:"
+  echo "    gh auth login      # $OWNER 계정 선택"
+  echo "  이후에는 이 스크립트가 gh auth switch 로 알아서 전환합니다."
   exit 1
+fi
+
+PREV_USER="$(gh auth status --active 2>/dev/null | sed -n 's/.*account \([^ ]*\).*/\1/p' | head -1)"
+restore_account() {
+  if [ -n "${PREV_USER:-}" ] && [ "$PREV_USER" != "$OWNER" ]; then
+    echo
+    echo "· 원래 계정으로 되돌립니다: $PREV_USER"
+    gh auth switch --user "$PREV_USER" >/dev/null 2>&1 || \
+      echo "  ! 자동 복구 실패 — 직접 실행하세요: gh auth switch --user $PREV_USER"
+  fi
+}
+trap restore_account EXIT
+
+if [ "$PREV_USER" != "$OWNER" ]; then
+  say "▸ 계정 전환: $PREV_USER → $OWNER"
+  run gh auth switch --user "$OWNER"
 fi
 
 for entry in "${REPOS[@]}"; do
