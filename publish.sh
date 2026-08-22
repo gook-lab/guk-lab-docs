@@ -32,14 +32,20 @@ run() { if [ "$DRY" = "--dry-run" ]; then echo "  [dry] $*"; else "$@"; fi; }
 
 # 인증 — gook-lab 계정으로 전환하고, 끝나면 원래 계정으로 되돌린다.
 # (회사 작업이 실수로 gook-lab 으로 나가면 곤란하다)
-if ! gh auth status 2>&1 | grep -q "account $OWNER"; then
+# grep -q 는 매치 즉시 파이프를 닫아 gh 가 SIGPIPE 로 죽고, pipefail 이 그걸
+# 실패로 잡는다 (간헐 재현). 파이프 없이 문자열로 검사한다.
+AUTH_STATUS="$(gh auth status 2>&1 || true)"
+if [[ "$AUTH_STATUS" != *"account $OWNER"* ]]; then
   echo "✗ gh 에 '$OWNER' 계정이 없습니다. 최초 1회만 직접 로그인하세요:"
   echo "    gh auth login      # $OWNER 계정 선택"
   echo "  이후에는 이 스크립트가 gh auth switch 로 알아서 전환합니다."
   exit 1
 fi
 
-PREV_USER="$(gh auth status --active 2>/dev/null | sed -n 's/.*account \([^ ]*\).*/\1/p' | head -1)"
+# 같은 이유로 head -1 도 쓰지 않는다 (sed 가 SIGPIPE 를 받는다).
+PREV_USER="$(gh auth status --active 2>/dev/null || true)"
+PREV_USER="${PREV_USER#*account }"
+PREV_USER="${PREV_USER%% *}"
 restore_account() {
   if [ -n "${PREV_USER:-}" ] && [ "$PREV_USER" != "$OWNER" ]; then
     echo
