@@ -45,6 +45,7 @@
 | 문서 | 한 줄 |
 |---|---|
 | [projects](projects.md) | 토이 프로젝트 15개 — 무엇인지, 어디 있는지, 공개 가능한지 |
+| [repo-names](repo-names.md) | GitHub 레포 이름 제안과 그 기준 |
 
 ## 이 저장소의 규칙
 

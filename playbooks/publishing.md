@@ -85,12 +85,28 @@ grep -rInE "(AIza[0-9A-Za-z_-]{30,}|sk-[A-Za-z0-9]{20,}|ghp_[A-Za-z0-9]{30,}|fig
 | `sample/` | Three.js 데모 클론 (minecraft / simcity / isometric-rpg) |
 | `spire-godot/references/` | 3.6 GB — 이미 gitignore 됨 |
 
-## 6. 개인정보
+## 6. 회사 문서가 섞여 들어가지 않았는지
+
+토이 프로젝트 폴더에 **회사 문서**가 굴러다니는 경우가 있다. `couple-app/` 에
+회사 인사평가 입력용 성과목표 문서 3건이 들어 있었다 —
+개인 공개 레포에 들어가면 안 되는 것이다. git init 전에 발견해 `.gitignore` 로 막았다.
+
+```bash
+grep -rliE "성과목표|인사평가|평가|사내|대외비|confidential" --include="*.md" . | grep -v node_modules
+```
+
+## 7. 도구 산출물
+
+`.gstack/` 같은 도구 출력이 실수로 추적되는 일이 있다 (`dragon-game` 에서
+`public/structures/.gstack/browse-audit.jsonl` 1건 발견). 첫 커밋 전에 `.gitignore`
+에 넣는다.
+
+## 8. 개인정보
 
 이력서·계약서·건강 기록 같은 건 토이 폴더에 섞여 있어도 **레포에는 안 들어간다.**
 `~/sonix/toy/이력서 파일 정리 및 제안/` 이 그 예다.
 
-## 7. 회사 코드와 섞이지 않았는지
+## 9. 회사 코드와 섞이지 않았는지
 
 `~/sonix/` 아래에는 `be`, `fe`, `dicom` 같은 **회사 프로젝트**가 있다. 개인 계정으로
 푸시하는 작업에서는 경로를 `toy/` 로 명시적으로 한정한다.
