@@ -85,6 +85,16 @@ for (const file of gitDocs() ?? walk(ROOT)) {
       }
     }
 
+    // 1b) HTML <img src> — README 스크린샷은 대부분 이 형태다.
+    //     마크다운 링크만 보면 그림이 통째로 깨져도 못 잡는다.
+    for (const m of line.matchAll(/<img\s[^>]*src=["']([^"']+)["']/gi)) {
+      const target = m[1].split("#")[0].trim();
+      if (!target || /^(https?:|data:|\/\/)/.test(target)) continue;
+      if (!existsSync(normalize(join(dir, decodeURIComponent(target))))) {
+        add(file, n, "dead-image", target);
+      }
+    }
+
     // 2) 백틱으로 인용된 코드 경로
     if (CHECK_PATHS) {
       for (const m of line.matchAll(/`([\w.@/-]+\.(?:ts|tsx|js|jsx|mjs|cjs|py|gd|cs|json|sh))`/g)) {
@@ -120,6 +130,7 @@ for (const p of problems) (byKind[p.kind] ??= []).push(p);
 const LABEL = {
   "dead-link": "죽은 링크 — 가리키는 파일이 없다",
   "missing-path": "없는 경로 — 문서가 인용한 파일이 없다",
+  "dead-image": "깨진 이미지 — <img src> 가 없는 파일을 가리킨다",
   "headless-table": "깨진 표 — 헤더/구분선이 없어 렌더링이 깨진다",
 };
 for (const [kind, items] of Object.entries(byKind)) {

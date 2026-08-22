@@ -124,17 +124,20 @@ JLPT 모의고사, Gemini 기반 AI 튜터(채팅·작문 첨삭·이야기 생�
 
 ---
 
-## 스크린샷이 없는 이유
+## 스크린샷 현황 (2026-08-22)
 
-지금 그림이 붙은 건 `myeongni-seojae` 하나뿐이다. 나머지는 코드를 읽지 않으면
-뭘 만든 건지 알 수 없는 상태다 — **포트폴리오로서는 이게 가장 큰 구멍이다.**
+| 프로젝트 | 상태 |
+|---|---|
+| `myeongni-seojae` | 자체 파이프라인(`pnpm shots`)으로 13장 |
+| `pig-ma` · `crypt-survivors` · `dungeon-craft` · `nihongo` · `couple-map` · `pulse-dashboard` | 헤드리스 브라우저로 촬영 |
+| `osm-walker` | **못 찍음** — 헤드리스 크롬에 WebGL 이 없어 Three.js 씬이 빈 화면으로 나온다 (2D 미니맵만 렌더됨). GPU 있는 브라우저가 필요하다 |
+| `rhythm-godot` | 웹이 아니라 Godot 실행이 필요하다 |
 
-손으로 찍으면 화면을 고칠 때마다 낡으므로, 테스트와 같은 도구로 찍는 파이프라인을
-[doc-screenshots 스킬](../harness/skills/doc-screenshots/SKILL.md)로 정리해 뒀다.
-`myeongni-seojae/e2e/screenshots.spec.ts` 가 실제로 도는 참조 구현이다.
+`pulse-dashboard` 는 백엔드 없이 찍어 빈 상태다 — 다만 그 빈 상태 자체가
+설계 결정이다. 실데이터가 없으면 목이 아니라 `-` 를 보여준다.
 
-앱을 띄워야 찍을 수 있고 둘(`nihongo` · `couple-map`)은 키가 필요해서, 이건
-별도 작업으로 남겨 뒀다.
+절차는 [doc-screenshots 스킬](../harness/skills/doc-screenshots/SKILL.md)에
+정리해 뒀다. 손으로 찍으면 화면을 고칠 때마다 낡는다.
 
 ## 공개하지 않은 것들
 
