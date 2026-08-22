@@ -1,0 +1,30 @@
+# guk-lab-docs — CI
+#
+# 문서 저장소라 빌드할 것이 없다. 대신 문서가 스스로 지키기로 한 규칙을
+# 확인한다 — 죽은 링크, 없는 파일을 가리키는 <img>, 헤더 없는 표.
+#
+# 이 검사기는 여기서 관리하는 audit-docs 스킬의 구현이다. 자기 저장소에
+# 먼저 돌리지 않는 검사기는 아무도 안 믿는다.
+
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: 문서 검사 — 죽은 링크 · 깨진 이미지 · 헤더 없는 표
+        run: node harness/skills/audit-docs/check-docs.mjs
+
+      - name: 스킬 설치 스크립트가 실제로 도는지
+        run: ./harness/install-skills.sh --dry-run
