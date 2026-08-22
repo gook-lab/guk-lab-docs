@@ -24,21 +24,23 @@
 | **couple-app** | 커플이 다닌 곳을 카카오 지도에 기록·공유하는 모바일 PWA. 타임라인·기념일·편지·타임캡슐 | React 19 · Vite · Firebase | `.env` 존재 (gitignore 확인됨 ✓) |
 | **3d-map** | OpenStreetMap 실제 건물·도로를 압출해 만든 로우폴리 3D 월드를 치비 캐릭터로 걸어다니는 웹 앱 | React 19 · R3F · Rapier | `.gitignore` 에 `.env` 추가 필요 |
 
-## 공개 전 히스토리 정리 필요 — 상용 에셋이 커밋되어 있음
-
-Unity 에셋 스토어 유료 패키지가 **git 히스토리에 이미 들어 있다.** `git rm --cached`
-로는 못 지운다 (히스토리에 남음). 공개하려면 에셋을 뺀 새 히스토리로 다시 시작하거나
-`git filter-repo` 를 돌려야 한다. 자세한 판정은 [publishing](playbooks/publishing.md).
-
-| 프로젝트 | 무엇 | 커밋된 상용 에셋 | .git |
-|---|---|---|---|
-| **dragon-game-unity** | 던전크래프트 ARPG — `dragon-game` 의 Unity 6 실시간 핵앤슬래시 포팅 | Blackthornprod *100 Fantasy Characters Pack* | 1.4 GB |
-| **dragon-game-jrpg** | 던전크래프트 JRPG — 전투 코어를 JS 리졸버와 **비트 동일**하게 C# 이식, 골든 코퍼스 차등 하네스로 검증 | Blackthornprod *100 Fantasy Characters Pack* | 1.1 GB |
-| **zombie-unity** | 좀비 서바이벌 탈출. 한 판 5~8분, 시드 고정 도시 생성 | SmallScaleInt *2D Zombie City Tile pack 1* · Character Creator Modern | 95 MB |
-
-> `dragon-game-unity` / `dragon-game-jrpg` 는 1 GB 를 넘어 GitHub 권장 한도도 초과한다.
-
 ## 공개하지 않음
+
+**Unity 3종 — 2026-08-22 제외 결정.** 유료 에셋 스토어 패키지가 히스토리에 이미
+커밋되어 있고(EULA 상 재배포 금지), 실측해 보니 **직접 작성한 코드가 전체의 2% 미만**
+이라 히스토리 필터링의 실익이 없다. 나중에 공개한다면 자체 코드만 담은 새 히스토리로
+시작하는 편이 맞다. 각 레포 README 에 근거와 함께 기록해 뒀다.
+
+| 프로젝트 | 자체 코드 / 전체 | 서드파티 팩 | .git |
+|---|---|---|---|
+| **dragon-game-unity** | 282 / 15,260 (1.8%) | Layer Lab · SpecialSkillsEffectsPack · MagicArsenal · Honeti · Vefects · Spine · Blackthornprod · OctopathSprites 등 20종+ | 1.4 GB |
+| **dragon-game-jrpg** | 161 / 17,937 (0.9%) | 위와 거의 동일 | 1.1 GB |
+| **zombie-unity** | 37 / 6,181 (0.6%) | SmallScaleInt *2D Zombie City Tile pack 1* · Character Creator Modern | 95 MB |
+
+> `OctopathSprites`(680개, `s01.png`~)는 이름과 형태로 보아 상용 게임 추출물이다 —
+> `spire-godot` 과 같은 부류.
+
+### 그 밖에 제외
 
 | 프로젝트 | 이유 |
 |---|---|

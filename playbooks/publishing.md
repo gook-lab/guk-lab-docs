@@ -29,6 +29,32 @@ git ls-files | grep -iE "Assets/(.*Pack|.*Kit|SmallScaleInt|Synty|.*Studios)" \
 
 셋 다 **히스토리에 있어서** 지금 상태로는 공개 불가다.
 
+### 필터링을 고민하기 전에 자체 코드 비율부터 재라
+
+에셋이 히스토리에 있으면 반사적으로 `git filter-repo` 를 떠올리게 되는데,
+**먼저 무엇이 남는지 세어 봐라.**
+
+```bash
+total=$(git ls-files | wc -l)
+own=$(git ls-files "Assets/Game" "Assets/Scenes" ProjectSettings Packages | wc -l)
+echo "자체 $own / 전체 $total"
+```
+
+토이 Unity 3종 실측 (2026-08-22):
+
+| 레포 | 자체 / 전체 |
+|---|---|
+| `dragon-game-unity` | 282 / 15,260 — **1.8%** |
+| `dragon-game-jrpg` | 161 / 17,937 — **0.9%** |
+| `zombie-unity` | 37 / 6,181 — **0.6%** |
+
+98%를 걷어내는 건 필터링이 아니라 **새로 만드는 것**이다. 이 비율이면
+`filter-repo` 로 1 GB 히스토리를 몇 시간 갈아 봐야, 거의 모든 커밋이 삭제된
+파일만 건드린 껍데기가 된다. 자체 코드만 담은 **새 히스토리**로 시작하고
+에셋은 각자 스토어에서 받게 안내하는 편이 정직하고 빠르다.
+
+**그리고 결정을 그 레포 README 에 남겨라.** 나중에 무심코 원격을 붙이는 걸 막는다.
+
 ## 2. 저작물 — 디컴파일·추출 산출물
 
 `spire-godot` 은 Slay the Spire 2 의 C# DLL 을 디컴파일해 파싱한 데이터·이미지를
