@@ -1,0 +1,68 @@
+# 프로젝트 지도
+
+`~/sonix/toy/` 아래 토이 프로젝트 전수 목록. 각 프로젝트의 상세는 그 레포의
+`README.md` / `CLAUDE.md` 가 단일 소스다 — **여기에 복제하지 않는다.**
+
+조사 시점: 2026-08-22.
+
+## 공개 가능 — 그대로 올릴 수 있음
+
+| 프로젝트 | 무엇 | 스택 | git | 마지막 커밋 |
+|---|---|---|---|---|
+| **pig** | FigJam 스타일 무한 캔버스 드로잉 앱. npm 라이브러리 `pig-ma` 로도 배포 | React 18 · TS · Vite · Konva · Zustand | 3.9M / 30 | 2026-08-20 |
+| **saju** | 명리서재 — 인생을 10년 단위(대운)로 펼쳐 보는 사주 사이트. 생년월일을 서버로 보내지 않음 | React 19 · TS · Vite · Tailwind v4 · Zustand | 25M / 39 | 2026-08-22 |
+| **stock-analysis** | PULSE — 한국·미국 시황 통합 다크 트레이딩 대시보드. KIS 실시간 체결/호가 SSE, 히트맵, 감성 뉴스, 모의 포트폴리오, 부동산 3D 배치도 | React 18 · TS · Vite · Node 프록시 | 4.1M / 43 | 2026-08-05 |
+| **rhythm-godot** | 얼불춤(ADOFAI)류 원버튼 리듬게임. 시간축을 오디오 클럭 하나로 통일 | Godot 4.7 · GDScript · Python(표준 라이브러리만) | 4.3M / 54 | 2026-08-11 |
+| **dragon-game** | 던전크래프트 — 드래곤퀘스트풍 턴제 RPG. 전투 리졸버가 PixiJS를 import 하지 않아 헤드리스 검증 가능 | JS(ESM) · PixiJS v8 · Vite · Vitest | 29M / 98 | 2026-07-21 |
+
+### git 초기화가 필요한 것 (원격 없음)
+
+| 프로젝트 | 무엇 | 스택 | 주의 |
+|---|---|---|---|
+| **game** | Crypt Survivors — 뱀서라이크 오토배틀러 로그라이트. 시뮬레이션이 렌더러와 분리 | JS · PixiJS v8 · Vite · Vitest (226개) | `.gitignore` 에 `.env` 추가 필요 |
+| **nihongo-app** | 니혼고 — 마스코트 기반 일본어 학습 PWA. SM-2 간격반복 + Gemini AI 튜터, 오디오 IndexedDB 오프라인 캐시 | React 19 · Vite · Firebase | `.env` 존재 (gitignore 확인됨 ✓) · `.agents/skills/` 는 벤더링된 서드파티 |
+| **couple-app** | 커플이 다닌 곳을 카카오 지도에 기록·공유하는 모바일 PWA. 타임라인·기념일·편지·타임캡슐 | React 19 · Vite · Firebase | `.env` 존재 (gitignore 확인됨 ✓) |
+| **3d-map** | OpenStreetMap 실제 건물·도로를 압출해 만든 로우폴리 3D 월드를 치비 캐릭터로 걸어다니는 웹 앱 | React 19 · R3F · Rapier | `.gitignore` 에 `.env` 추가 필요 |
+
+## 공개 전 히스토리 정리 필요 — 상용 에셋이 커밋되어 있음
+
+Unity 에셋 스토어 유료 패키지가 **git 히스토리에 이미 들어 있다.** `git rm --cached`
+로는 못 지운다 (히스토리에 남음). 공개하려면 에셋을 뺀 새 히스토리로 다시 시작하거나
+`git filter-repo` 를 돌려야 한다. 자세한 판정은 [publishing](playbooks/publishing.md).
+
+| 프로젝트 | 무엇 | 커밋된 상용 에셋 | .git |
+|---|---|---|---|
+| **dragon-game-unity** | 던전크래프트 ARPG — `dragon-game` 의 Unity 6 실시간 핵앤슬래시 포팅 | Blackthornprod *100 Fantasy Characters Pack* | 1.4 GB |
+| **dragon-game-jrpg** | 던전크래프트 JRPG — 전투 코어를 JS 리졸버와 **비트 동일**하게 C# 이식, 골든 코퍼스 차등 하네스로 검증 | Blackthornprod *100 Fantasy Characters Pack* | 1.1 GB |
+| **zombie-unity** | 좀비 서바이벌 탈출. 한 판 5~8분, 시드 고정 도시 생성 | SmallScaleInt *2D Zombie City Tile pack 1* · Character Creator Modern | 95 MB |
+
+> `dragon-game-unity` / `dragon-game-jrpg` 는 1 GB 를 넘어 GitHub 권장 한도도 초과한다.
+
+## 공개하지 않음
+
+| 프로젝트 | 이유 |
+|---|---|
+| **spire-godot** | © Mega Crit 저작물(Slay the Spire 2 디컴파일 산출물)이 히스토리에 있음. **2026-08-18 에 공개 제외로 결정**되어 그 레포 README 에 기록됨. .git 11 GB |
+| **sample** | 서드파티 Three.js 데모 클론 모음 (minecraft/simcity/isometric-rpg) — 남의 코드 |
+| **이력서 파일 정리 및 제안** | 개인정보 |
+| **dragon-game-unity-asset-backup** | 에셋 백업 사본 |
+
+## 문서량 (직접 작성분, 벤더링 제외)
+
+| 프로젝트 | md |
+|---|---|
+| dragon-game-unity | 54 |
+| pig | 53 |
+| nihongo-app | 31 |
+| dragon-game-jrpg | 29 |
+| game | 21 |
+| dragon-game | 19 |
+| stock-analysis | 17 |
+| spire-godot | 13 |
+| couple-app | 9 |
+| saju · 이력서 | 각 7 |
+| rhythm-godot | 6 |
+| 3d-map · zombie-unity | 각 4 |
+
+합계 279개. (전체 `.md` 는 530개지만 251개가 벤더링 —
+`spire-godot/references/` 119개, `nihongo-app/.agents/skills/` 108개 등)
