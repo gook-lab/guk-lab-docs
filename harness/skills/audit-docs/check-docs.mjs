@@ -14,7 +14,8 @@
  *   node check-docs.mjs            # 검사 (문제 있으면 exit 1)
  *   node check-docs.mjs --paths    # 코드 경로 검사까지 (오탐이 늘 수 있다)
  */
-import { readdirSync, readFileSync, existsSync, statSync } from "node:fs";
+import { readdirSync, readFileSync, existsSync } from "node:fs";
+import { spawnSync } from "node:child_process";
 import { join, dirname, normalize, relative } from "node:path";
 
 const ROOT = process.cwd();
@@ -24,6 +25,19 @@ const SKIP_DIRS = new Set([
   ".venv", "venv", "__pycache__", ".godot", "Library",
   "playwright-report", "test-results", ".gstack", ".next",
 ]);
+
+/**
+ * git 레포 안이면 git 에게 목록을 묻는다 — 추적 중이거나, 추적은 안 되지만
+ * ignore 되지도 않은 .md 만 본다. 디렉토리를 직접 훑으면 .gitignore 된
+ * 작업 폴더(clone 해 둔 남의 레포 등)까지 검사해 남의 문제를 내 실패로
+ * 보고하게 된다.
+ */
+function gitDocs() {
+  const r = spawnSync("git", ["ls-files", "--cached", "--others", "--exclude-standard", "-z", "*.md"],
+    { cwd: ROOT, encoding: "utf8", maxBuffer: 64 * 1024 * 1024 });
+  if (r.status !== 0 || !r.stdout) return null;
+  return r.stdout.split("\0").filter(Boolean).map((f) => join(ROOT, f));
+}
 
 function walk(dir, out = []) {
   for (const e of readdirSync(dir, { withFileTypes: true })) {
@@ -52,7 +66,7 @@ const problems = [];
 const add = (file, line, kind, detail) =>
   problems.push({ file: relative(ROOT, file), line, kind, detail });
 
-for (const file of walk(ROOT)) {
+for (const file of gitDocs() ?? walk(ROOT)) {
   const raw = readFileSync(file, "utf8");
   const lines = stripFences(raw);
   const dir = dirname(file);

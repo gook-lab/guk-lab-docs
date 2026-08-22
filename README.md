@@ -40,12 +40,19 @@
 |---|---|
 | [harness/README](harness/README.md) | 프로젝트별 `.claude/` rules·skills·commands 전수 목록과 어디서 훔쳐 쓸지 |
 
+### 사람이 읽는 문서
+
+| 문서 | 한 줄 |
+|---|---|
+| [humans/](humans/README.md) | 처음 온 사람을 위한 입구 — 투어 · 결정 기록 · 시작하기 |
+
 ### 지도
 
 | 문서 | 한 줄 |
 |---|---|
 | [projects](projects.md) | 토이 프로젝트 15개 — 무엇인지, 어디 있는지, 공개 가능한지 |
-| [repo-names](repo-names.md) | GitHub 레포 이름 제안과 그 기준 |
+| [repo-names](repo-names.md) | GitHub 레포 이름과 라이선스 배치 |
+| `clone-all.sh` | 프로젝트 9개를 `workspace/` 로 받는다 (gitignore 됨) |
 
 ## 이 저장소의 규칙
 

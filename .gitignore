@@ -1,3 +1,6 @@
 .DS_Store
 .gstack/
 *.tmp
+
+# 프로젝트 clone 대상 — 허브 레포에는 넣지 않는다
+workspace/

@@ -23,6 +23,7 @@
 | [audit-docs](skills/audit-docs/SKILL.md) | 죽은 상대 링크·없는 경로·헤더 없는 표를 잡는다. 실행 스크립트 포함 | 하루에 3개 레포에서 손으로 고쳤다 |
 | [sync-doc-numbers](skills/sync-doc-numbers/SKILL.md) | 문서의 수치를 타이핑하지 않고 재서 채운다 | 4개 레포의 테스트 수 기준선이 전부 낡아 있었다 |
 | [verification-gate](skills/verification-gate/SKILL.md) | 기존 부채를 베이스라인으로 고정하고 늘어난 것만 실패시킨다 | tsc 523건·eslint 264건이 게이트 없이 쌓였다 |
+| [doc-screenshots](skills/doc-screenshots/SKILL.md) | README 스크린샷을 테스트와 같은 도구로 찍는다 | 9개 중 그림이 있는 레포가 1개뿐이었다 |
 
 셋 다 **실제로 겪은 문제**에서 나왔다. 겪지 않은 문제로 스킬을 만들면 아무도 안 쓴다.
 
