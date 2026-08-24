@@ -35,6 +35,7 @@
 | [cross-session-collab](playbooks/cross-session-collab.md) | 두 에이전트 세션이 한 레포에서 같이 일하는 법 |
 | [publishing](playbooks/publishing.md) | 공개 전 확인 목록 — 상용 에셋·용량·비밀정보 |
 | [fe-radio](playbooks/fe-radio.md) | 위 방법론들을 FE RADIO 전략(C → RADIO → V)의 설계 순서로 다시 배치한 지도 |
+| [branching](playbooks/branching.md) | main/develop 브랜치 룰베이스 — main 직접 push 차단, prefix 작업 브랜치 |
 
 ### 하네스 — 재사용 자산 카탈로그
 
