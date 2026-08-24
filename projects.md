@@ -1,16 +1,16 @@
 # 프로젝트 지도
 
-`~/sonix/toy/` 아래 토이 프로젝트 전수 목록이에요. 각 프로젝트의 상세는 그 레포의
-`README.md` / `CLAUDE.md`가 단일 소스라서, **여기에 복제하지 않아요.**
+`~/sonix/toy/` 아래 토이 프로젝트 전수 목록입니다. 각 프로젝트의 상세는 그 레포의
+`README.md` / `CLAUDE.md`가 단일 소스라서, **여기에 복제하지 않습니다.**
 
 조사 시점: 2026-08-22. (2026-08-24 갱신: 신규 2건 — water-balloon-arcade, roomcast)
 
-## 공개 가능 — 그대로 올릴 수 있어요
+## 공개 가능 — 그대로 올릴 수 있습니다
 
 | 프로젝트 | 무엇 | 스택 | git | 마지막 커밋 |
 |---|---|---|---|---|
 | **pig** | FigJam 스타일 무한 캔버스 드로잉 앱. npm 라이브러리 `pig-ma`로도 배포 중 | React 18 · TS · Vite · Konva · Zustand | 3.9M / 30 | 2026-08-20 |
-| **saju** | 명리서재 — 인생을 10년 단위(대운)로 펼쳐 보는 사주 사이트. 생년월일을 서버로 보내지 않아요 | React 19 · TS · Vite · Tailwind v4 · Zustand | 25M / 39 | 2026-08-22 |
+| **saju** | 명리서재 — 인생을 10년 단위(대운)로 펼쳐 보는 사주 사이트. 생년월일은 로컬 계산(서버 전송 없음) | React 19 · TS · Vite · Tailwind v4 · Zustand | 25M / 39 | 2026-08-22 |
 | **stock-analysis** | PULSE — 한국·미국 시황 통합 다크 트레이딩 대시보드. KIS 실시간 체결/호가 SSE, 히트맵, 감성 뉴스, 모의 포트폴리오, 부동산 3D 배치도 | React 18 · TS · Vite · Node 프록시 | 4.1M / 43 | 2026-08-05 |
 | **rhythm-godot** | 얼불춤(ADOFAI)류 원버튼 리듬게임. 시간축을 오디오 클럭 하나로 통일 | Godot 4.7 · GDScript · Python(표준 라이브러리만) | 4.3M / 54 | 2026-08-11 |
 | **dragon-game** | 던전크래프트 — 드래곤퀘스트풍 턴제 RPG. 전투 리졸버가 PixiJS를 import 하지 않아 헤드리스 검증 가능 | JS(ESM) · PixiJS v8 · Vite · Vitest | 29M / 98 | 2026-07-21 |
@@ -28,11 +28,11 @@
 
 ## 공개하지 않는 것들
 
-**Unity 3종 — 2026-08-22에 제외로 결정했어요.** 유료 에셋 스토어 패키지가
+**Unity 3종 — 2026-08-22에 제외로 결정했습니다.** 유료 에셋 스토어 패키지가
 히스토리에 이미 커밋되어 있고(EULA상 재배포 금지), 실측해 보니 **직접 작성한
-코드가 전체의 2% 미만**이라 히스토리 필터링의 실익이 없더라고요. 나중에 공개하게
-되면 자체 코드만 담은 새 히스토리로 시작하는 편이 맞아요. 각 레포 README에
-근거와 함께 적어뒀어요.
+코드가 전체의 2% 미만**이라 히스토리 필터링의 실익이 없습니다. 나중에 공개하게
+되면 자체 코드만 담은 새 히스토리로 시작하는 편이 맞습니다. 각 레포 README에
+근거와 함께 적어뒀습니다.
 
 | 프로젝트 | 자체 코드 / 전체 | 서드파티 팩 | .git |
 |---|---|---|---|
@@ -40,15 +40,15 @@
 | **dragon-game-jrpg** | 161 / 17,937 (0.9%) | 위와 거의 동일 | 1.1 GB |
 | **zombie-unity** | 37 / 6,181 (0.6%) | SmallScaleInt *2D Zombie City Tile pack 1* · Character Creator Modern | 95 MB |
 
-> `OctopathSprites`(680개, `s01.png`~)는 이름과 형태로 보아 상용 게임 추출물이에요 —
-> `spire-godot`과 같은 부류죠.
+> `OctopathSprites`(680개, `s01.png`~)는 이름과 형태로 보아 상용 게임 추출물입니다 —
+> `spire-godot`과 같은 부류입니다.
 
 ### 그 밖에 제외한 것들
 
 | 프로젝트 | 이유 |
 |---|---|
-| **spire-godot** | © Mega Crit 저작물(Slay the Spire 2 디컴파일 산출물)이 히스토리에 있어요. **2026-08-18에 공개 제외로 결정**해서 그 레포 README에 기록해뒀어요. .git 11 GB |
-| **sample** | 서드파티 Three.js 데모 클론 모음 (minecraft/simcity/isometric-rpg) — 남의 코드예요 |
+| **spire-godot** | © Mega Crit 저작물(Slay the Spire 2 디컴파일 산출물)이 히스토리에 있습니다. **2026-08-18에 공개 제외로 결정**해서 그 레포 README에 기록해뒀습니다. .git 11 GB |
+| **sample** | 서드파티 Three.js 데모 클론 모음 (minecraft/simcity/isometric-rpg) — 서드파티 코드 |
 | **이력서 파일 정리 및 제안** | 개인정보 |
 | **dragon-game-unity-asset-backup** | 에셋 백업 사본 |
 
@@ -69,5 +69,5 @@
 | rhythm-godot | 6 |
 | 3d-map · zombie-unity | 각 4 |
 
-합계 279개예요. (전체 `.md`는 530개지만 251개가 벤더링이에요 —
+합계 279개입니다. (전체 `.md`는 530개지만 251개가 벤더링입니다 —
 `spire-godot/references/` 119개, `nihongo-app/.agents/skills/` 108개 등)
