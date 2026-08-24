@@ -1,8 +1,8 @@
 # 하네스 카탈로그
 
-각 프로젝트 `.claude/` 아래에 쌓인 rules · skills · commands 전수 목록.
-**여기로 복사해 오지 않는다** — 원본 경로를 가리킨다. 새 프로젝트를 시작할 때
-"이런 걸 이미 만들어 뒀나?" 를 확인하는 색인이다.
+각 프로젝트 `.claude/` 아래에 쌓인 rules · skills · commands 전수 목록이에요.
+**여기로 복사해 오지 않고** 원본 경로를 가리켜요. 새 프로젝트를 시작할 때
+"이런 걸 이미 만들어 뒀나?"를 확인하는 색인이에요.
 
 조사 시점: 2026-08-22.
 
@@ -10,8 +10,8 @@
 
 ## 이 저장소가 제공하는 스킬
 
-프로젝트를 넘어 쓰이는 것들만 여기서 관리한다. **각 레포에 복사하지 않는다** —
-사본은 원본이 바뀌어도 안 바뀌어서, 결국 어느 게 맞는지 모르게 된다.
+프로젝트를 넘어 쓰이는 것들만 여기서 관리해요. **각 레포에 복사하지 않아요** —
+사본은 원본이 바뀌어도 안 바뀌어서, 결국 어느 게 맞는지 모르게 되거든요.
 
 ```bash
 ./install-skills.sh          # ~/.claude/skills/ 에 설치 (모든 프로젝트에서 사용)
@@ -20,24 +20,25 @@
 
 | 스킬 | 하는 일 | 왜 만들었나 |
 |---|---|---|
-| [audit-docs](skills/audit-docs/SKILL.md) | 죽은 상대 링크·없는 경로·헤더 없는 표를 잡는다. 실행 스크립트 포함 | 하루에 3개 레포에서 손으로 고쳤다 |
-| [sync-doc-numbers](skills/sync-doc-numbers/SKILL.md) | 문서의 수치를 타이핑하지 않고 재서 채운다 | 4개 레포의 테스트 수 기준선이 전부 낡아 있었다 |
-| [verification-gate](skills/verification-gate/SKILL.md) | 기존 부채를 베이스라인으로 고정하고 늘어난 것만 실패시킨다 | tsc 523건·eslint 264건이 게이트 없이 쌓였다 |
-| [doc-screenshots](skills/doc-screenshots/SKILL.md) | README 스크린샷을 테스트와 같은 도구로 찍는다 | 9개 중 그림이 있는 레포가 1개뿐이었다 |
+| [audit-docs](skills/audit-docs/SKILL.md) | 죽은 상대 링크·없는 경로·헤더 없는 표를 잡아요. 실행 스크립트 포함 | 하루에 3개 레포에서 손으로 고쳤어요 |
+| [sync-doc-numbers](skills/sync-doc-numbers/SKILL.md) | 문서의 수치를 타이핑하지 않고 재서 채워요 | 4개 레포의 테스트 수 기준선이 전부 낡아 있었어요 |
+| [verification-gate](skills/verification-gate/SKILL.md) | 기존 부채를 베이스라인으로 고정하고 늘어난 것만 실패시켜요 | tsc 523건·eslint 264건이 게이트 없이 쌓였어요 |
+| [doc-screenshots](skills/doc-screenshots/SKILL.md) | README 스크린샷을 테스트와 같은 도구로 찍어요 | 9개 중 그림이 있는 레포가 1개뿐이었어요 |
 
-셋 다 **실제로 겪은 문제**에서 나왔다. 겪지 않은 문제로 스킬을 만들면 아무도 안 쓴다.
+넷 다 **실제로 겪은 문제**에서 나왔어요. 겪지 않은 문제로 스킬을 만들면
+아무도 안 쓰더라고요.
 
 ---
 
-## 반복해 나타난 4가지 꼴
+## 반복해서 나타난 4가지 꼴
 
-목록을 훑으면 서로 모르는 프로젝트들이 **같은 네 가지 문제**를 각자 풀어 놨다.
-새 프로젝트에서도 십중팔구 이 넷이 나온다.
+목록을 훑으면 서로 모르는 프로젝트들이 **같은 네 가지 문제**를 각자 풀어놨어요.
+새 프로젝트에서도 십중팔구 이 넷이 나와요.
 
 ### 1. `scaffold-*` — 한 개념이 여러 파일에 흩어져 있을 때
 
-장비 하나를 추가하는데 정의·전리품표·상점·아이콘·테스트를 다 손대야 하면, 사람은
-반드시 하나를 빠뜨린다. 그 순서를 커맨드로 굳혀 둔다.
+장비 하나를 추가하는데 정의·전리품표·상점·아이콘·테스트를 다 손대야 하면,
+사람은 반드시 하나를 빠뜨려요. 그 순서를 커맨드로 굳혀두는 거예요.
 
 | 커맨드 | 프로젝트 | 몇 개 파일을 묶나 |
 |---|---|---|
@@ -48,13 +49,14 @@
 | `whitelist-save-flag` | dragon-game | `freshSave()` **와** 마이그레이션 **양쪽** |
 | `add-canvas-property` | pig | 타입 · store equality · 옵션바 · 테스트 |
 
-`whitelist-save-flag` 와 `add-canvas-property` 가 같은 함정을 가리킨다 —
-**세이브/undo 스키마에 필드를 추가하면 등록처가 두 군데 이상**이고, 하나만 넣으면
-"저장은 되는데 되돌리면 사라지는" 버그가 된다.
+`whitelist-save-flag`와 `add-canvas-property`가 같은 함정을 가리켜요 —
+**세이브/undo 스키마에 필드를 추가하면 등록처가 두 군데 이상**이고, 하나만
+넣으면 "저장은 되는데 되돌리면 사라지는" 버그가 되죠.
 
 ### 2. `validate-*` — 타입 시스템이 못 잡는 데이터 제약
 
-콘텐츠가 JSON·객체 리터럴로 가면 컴파일러가 손을 못 댄다. 그래서 전용 린터를 짠다.
+콘텐츠가 JSON·객체 리터럴로 가면 컴파일러가 손을 못 대요. 그래서 전용 린터를
+짜요.
 
 | 커맨드 | 프로젝트 | 무엇을 잡나 |
 |---|---|---|
@@ -64,13 +66,14 @@
 | `audit-projectile-angles` | game | PNG 주축을 PIL PCA 로 재서 설정값과 대조 |
 | `map-placement-validator` | dragon-game | 배치한 오브젝트에 실제로 도달 가능한가 |
 
-`audit-projectile-angles` 가 특히 좋은 예다 — **에셋 자체를 측정해서** 설정과
-맞는지 본다. 눈으로 보면 "대충 맞는 것 같은데"로 끝날 것을 숫자로 만든다.
+`audit-projectile-angles`가 특히 좋은 예예요 — **에셋 자체를 측정해서** 설정과
+맞는지 봐요. 눈으로 보면 "대충 맞는 것 같은데"로 끝날 것을 숫자로 만들어줘요.
 
 ### 3. 하네스가 본 게임과 갈라지지 않게 막는 검사
 
-[헤드리스 하네스](../playbooks/headless-harness.md)의 숨은 실패 모드: **하네스가
-게임의 옛 버전을 시뮬레이션하기 시작하면**, 통과해도 아무 의미가 없는데 아무도 모른다.
+[헤드리스 하네스](../playbooks/headless-harness.md)의 숨은 실패 모드예요:
+**하네스가 게임의 옛 버전을 시뮬레이션하기 시작하면**, 통과해도 아무 의미가
+없는데 아무도 몰라요.
 
 | 커맨드 | 프로젝트 | 무엇을 대조하나 |
 |---|---|---|
@@ -78,8 +81,8 @@
 | `sync-balance-scenarios` | dragon-game | 하네스 SCENARIOS 의 인카운터 풀·그룹 크기 vs 실제 콘텐츠 |
 | `sync-save-schema` | game | 세이브 테스트의 `toEqual` 블록 vs 현재 `fresh()` 스키마 |
 
-**하네스를 만들었으면 하네스의 동기화 검사도 만들어라.** 이게 없으면 하네스는
-조용히 썩는다.
+**하네스를 만들었으면 하네스의 동기화 검사도 만들어요.** 이게 없으면 하네스는
+조용히 썩어요.
 
 ### 4. `verify-*` — 커밋 직전 게이트, 그리고 "했다는 말"의 검증
 
@@ -89,9 +92,9 @@
 | `verify-core-build` | dragon-game-unity · -jrpg | JS 콘텐츠 재추출 → 차등 하네스 → **ALL GATES PASS** |
 | `verify-agent-output` | dragon-game | **백그라운드 에이전트가 했다고 주장한 작업을 실제 코드와 대조** |
 
-`verify-agent-output` 은 여기 목록에서 유일하게 *에이전트 자체*를 겨냥한다.
-"구현했습니다"는 주장이지 증거가 아니라는 전제에서 출발한다 —
-[cross-session-collab](../playbooks/cross-session-collab.md) 과 같은 뿌리다.
+`verify-agent-output`은 여기 목록에서 유일하게 *에이전트 자체*를 겨냥해요.
+"구현했습니다"는 주장이지 증거가 아니라는 전제에서 출발하거든요 —
+[cross-session-collab](../playbooks/cross-session-collab.md)과 같은 뿌리예요.
 
 ---
 
@@ -106,8 +109,9 @@
 | **game** | 2 | `game-architecture` `game-testing` |
 | **couple-app** | 1 | `design-system` |
 
-> `pig/.claude/rules/` 가 가장 성숙하다. React·TS 프로젝트를 새로 시작하면 여기부터
-> 복사해 깎는 게 빠르다. 다만 `figma` `shapes` `options-bars` 는 캔버스 앱 전용이다.
+> `pig/.claude/rules/`가 가장 성숙해요. React·TS 프로젝트를 새로 시작하면
+> 여기부터 복사해서 깎는 게 빨라요. 다만 `figma` `shapes` `options-bars`는
+> 캔버스 앱 전용이에요.
 
 ### skills
 
@@ -139,7 +143,7 @@
 
 ## 벤더링 — 여기 없음, 링크만
 
-`nihongo-app/.agents/skills/` 에 서드파티 스킬팩 4종(md 108개)이 들어 있다:
+`nihongo-app/.agents/skills/`에 서드파티 스킬팩 4종(md 108개)이 들어 있어요:
 `vercel-composition-patterns` · `vercel-react-best-practices` ·
 `vercel-react-native-skills` · `web-design-guidelines`.
-남의 저작물이므로 레포에 올리지 않는다.
+남의 저작물이라 레포에는 올리지 않아요.
