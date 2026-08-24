@@ -45,6 +45,15 @@ JSON
 - 이미 로컬 `main`에 커밋했는데 push가 거절된다면 그게 규칙이 작동하는
   것입니다: `git branch work && git push -u origin work` 후 PR로 올립니다.
 
+## PR 본문 — 공용 템플릿
+
+PR 본문은 공용 템플릿을 씁니다 — 실무에서 쓰는 pr-summary 워크플로에서
+발췌해 토이 운영에 맞게 줄였습니다 (요약 · **배경/동기** · PR 유형 ·
+커밋 prefix 카테고리별 상세 · 체크리스트). 정본은
+[`harness/templates/pull_request_template.md`](../harness/templates/pull_request_template.md)이고,
+각 레포의 `.github/pull_request_template.md`로 복사해 두면 GitHub이 PR 생성
+화면에 자동으로 채워 줍니다 (2026-08-24 전 레포 배포).
+
 ## 로컬 가드 — main에서는 커밋 자체가 안 되게
 
 원격 보호는 push 시점에만 걸립니다. 로컬에서 습관적으로 main에 커밋하는 것까지
