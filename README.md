@@ -39,6 +39,7 @@
 | [tooling-baseline](playbooks/tooling-baseline.md) | ESLint·Prettier 공용 규약 — 옵션은 실측 채택, 부채는 기록 후 점진 청산 |
 | [web-optimization](playbooks/web-optimization.md) | 이미지 WebP·폰트·코드 최적화 룰 — 픽셀아트는 PNG 예외 |
 | [ci-security](playbooks/ci-security.md) | CI는 초록 게이트만 + 보안 자동화 4종 — required check로 main과 결속 |
+| [frontend-patterns](playbooks/frontend-patterns.md) | 컴포넌트 계층·훅·상태 설계 공용 패턴 — 실무 규칙의 일반화 발췌 |
 
 ### 하네스 — 재사용 자산 카탈로그
 
