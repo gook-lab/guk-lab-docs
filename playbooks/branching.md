@@ -45,6 +45,27 @@ JSON
 - 이미 로컬 `main`에 커밋했는데 push가 거절된다면 그게 규칙이 작동하는
   것입니다: `git branch work && git push -u origin work` 후 PR로 올립니다.
 
+## 로컬 가드 — main에서는 커밋 자체가 안 되게
+
+원격 보호는 push 시점에만 걸립니다. 로컬에서 습관적으로 main에 커밋하는 것까지
+막으려면 각 레포에 pre-commit 가드를 둡니다 (2026-08-24 전 레포 설치):
+
+```sh
+#!/bin/sh
+branch="$(git symbolic-ref --short HEAD 2>/dev/null)"
+if [ "$branch" = "main" ]; then
+  echo "✖ main에서는 직접 커밋할 수 없습니다 — develop/feature 브랜치에서 작업 후 PR로 합치세요" >&2
+  exit 1
+fi
+```
+
+- husky 등으로 `core.hooksPath`가 설정된 레포는 그 경로의 pre-commit 앞부분에
+  같은 가드를 끼워 넣습니다.
+- `.git/hooks/`는 클론에 따라오지 않으므로, 새 클론에서는 이 블록을 다시
+  설치해야 합니다.
+- 이 저장소(guk-lab-docs)의 문서 갱신도 예외가 아닙니다 — develop에 커밋하고
+  PR로 main에 합칩니다.
+
 ## 확인
 
 ```bash
