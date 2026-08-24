@@ -31,6 +31,19 @@
 
 ---
 
+## 템플릿 — 새 프로젝트 시작 세트
+
+[`templates/`](templates/)에 공용 설정 원본을 둡니다. 사용법과 채택 규칙은
+[tooling-baseline](../playbooks/tooling-baseline.md) 참고.
+
+| 파일 | 용도 |
+|---|---|
+| `eslint.config.react-ts.js` | TS + React 레포용 ESLint 9 flat config |
+| `eslint.config.plain-js.js` | 순수 JS 레포용 ESLint 9 flat config |
+| `prettierrc.a.json` / `prettierrc.b.json` | Prettier 옵션 2안 — 위반 수 실측으로 채택 |
+
+---
+
 ## 반복해서 나타난 4가지 꼴
 
 목록을 훑으면 서로 모르는 프로젝트들이 **같은 네 가지 문제**를 각자 풀어놨습니다.
