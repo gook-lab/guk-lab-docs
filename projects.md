@@ -3,7 +3,7 @@
 `~/sonix/toy/` 아래 토이 프로젝트 전수 목록입니다. 각 프로젝트의 상세는 그 레포의
 `README.md` / `CLAUDE.md`가 단일 소스라서, **여기에 복제하지 않습니다.**
 
-조사 시점: 2026-08-22. (2026-08-24 갱신: 신규 2건 — water-balloon-arcade, roomcast)
+조사 시점: 2026-08-22. (2026-08-24 갱신: 신규 2건 — water-balloon-arcade, roomcast · roomcast는 같은 날 공개)
 
 ## 공개 가능 — 그대로 올릴 수 있습니다
 
@@ -14,6 +14,7 @@
 | **stock-analysis** | PULSE — 한국·미국 시황 통합 다크 트레이딩 대시보드. KIS 실시간 체결/호가 SSE, 히트맵, 감성 뉴스, 모의 포트폴리오, 부동산 3D 배치도 | React 18 · TS · Vite · Node 프록시 | 4.1M / 43 | 2026-08-05 |
 | **rhythm-godot** | 얼불춤(ADOFAI)류 원버튼 리듬게임. 시간축을 오디오 클럭 하나로 통일 | Godot 4.7 · GDScript · Python(표준 라이브러리만) | 4.3M / 54 | 2026-08-11 |
 | **dragon-game** | 던전크래프트 — 드래곤퀘스트풍 턴제 RPG. 전투 리졸버가 PixiJS를 import 하지 않아 헤드리스 검증 가능 | JS(ESM) · PixiJS v8 · Vite · Vitest | 29M / 98 | 2026-07-21 |
+| **roomcast** | 3D 인테리어 배치 도구 — 2D 평면도 에디터 + 1인칭 워크스루 + 조감도. 평면도 모델 하나(SSOT)에서 2D/3D 파생. 구현 진행 중 | React 18 · TS · Vite · R3F | 2.0M / 22 | 2026-08-24 |
 
 ### git 초기화가 필요한 것 (원격 없음)
 
@@ -24,7 +25,6 @@
 | **couple-app** | 커플이 다닌 곳을 카카오 지도에 기록·공유하는 모바일 PWA. 타임라인·기념일·편지·타임캡슐 | React 19 · Vite · Firebase | `.env` 존재 (gitignore 확인됨 ✓) |
 | **3d-map** | OpenStreetMap 실제 건물·도로를 압출해 만든 로우폴리 3D 월드를 치비 캐릭터로 걸어다니는 웹 앱 | React 19 · R3F · Rapier | `.gitignore`에 `.env` 추가 필요 |
 | **water-balloon-arcade** | 물풍선 대작전 — 크레이지아케이드류 픽셀 아케이드. 디자인 캔버스 프로토타입을 React로 이식, 게임 루프는 React 밖 순수 JS 엔진 | React 18 · Vite · Canvas2D | 2026-08-24 신규. 원본 핸드오프는 `크레이지아케이드 (1)/` (공개 대상 아님) |
-| **roomcast** | 3D 인테리어 배치 도구 — 2D 평면도 에디터 + 1인칭 워크스루 + 조감도. 평면도 모델 하나(SSOT)에서 2D/3D 파생 | React 18 · TS · Vite · R3F | 2026-08-24 신규, 구현 진행 중. 원본 핸드오프는 `design_handoff_3d_interior_planner/` (공개 대상 아님) |
 
 ## 공개하지 않는 것들
 
