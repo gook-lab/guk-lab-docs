@@ -40,6 +40,8 @@
 | [web-optimization](playbooks/web-optimization.md) | 이미지 WebP·폰트·코드 최적화 룰 — 픽셀아트는 PNG 예외 |
 | [ci-security](playbooks/ci-security.md) | CI는 초록 게이트만 + 보안 자동화 4종 — required check로 main과 결속 |
 | [frontend-patterns](playbooks/frontend-patterns.md) | 컴포넌트 계층·훅·상태 설계 공용 패턴 — 실무 규칙의 일반화 발췌 |
+| [derived-docs](playbooks/derived-docs.md) | 손으로 고치는 표를 파생물로 — append-only 스트림·머지 드라이버·재생성 게이트 |
+| [context-budget](playbooks/context-budget.md) | 에이전트 착수 전 읽기량 — 문서 슬라이싱·룰 스코프·처리 티어 |
 
 ### 하네스 — 재사용 자산 카탈로그
 
