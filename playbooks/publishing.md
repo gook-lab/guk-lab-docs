@@ -32,7 +32,7 @@ git ls-files | grep -iE "Assets/(.*Pack|.*Kit|SmallScaleInt|Synty|.*Studios)" \
 ### 필터링을 고민하기 전에 자체 코드 비율부터 잽니다
 
 에셋이 히스토리에 있으면 반사적으로 `git filter-repo`를 떠올리게 되는데,
-**먼저 무엇이 남는지 세어보는 게 좋아요.**
+**먼저 무엇이 남는지 세어보는 것이 좋습니다.**
 
 ```bash
 total=$(git ls-files | wc -l)
@@ -118,7 +118,7 @@ grep -rInE "(AIza[0-9A-Za-z_-]{30,}|sk-[A-Za-z0-9]{20,}|ghp_[A-Za-z0-9]{30,}|fig
 
 토이 프로젝트 폴더에 **회사 문서**가 굴러다니는 경우가 있습니다. `couple-app/`에
 회사 인사평가 입력용 성과목표 문서 3건이 들어 있었습니다 — 개인 공개 레포에
-들어가면 안 되는 것들이죠. git init 전에 발견해서 `.gitignore`로 막았습니다.
+들어가면 안 되는 것들입니다. git init 전에 발견해서 `.gitignore`로 막았습니다.
 
 ```bash
 grep -rliE "성과목표|인사평가|평가|사내|대외비|confidential" --include="*.md" . | grep -v node_modules
