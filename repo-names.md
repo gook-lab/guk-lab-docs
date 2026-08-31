@@ -20,8 +20,8 @@
 | `pig` | **pig-ma** | npm에 이미 `pig-ma`로 배포 중 — 이름 분기 방지 |
 | `game` | **crypt-survivors** | 제품명 사용. `game`은 레포명으로는 최악 |
 | `dragon-game` | **dungeon-craft** | 제품명이 던전크래프트. "dragon"은 실제 내용과 불일치 |
-| `stock-analysis` | **pulse-dashboard** | 제품명이 PULSE |
-| `saju` | **myeongni-seojae** | 제품명이 명리서재. 짧게 가려면 `saju-seojae` |
+| `stock-analysis` | **stock-pulse** | 제품명이 PULSE |
+| `saju` | **myeongri-seojae** | 제품명이 명리서재. 짧게 가려면 `saju-seojae` |
 | `nihongo-app` | **nihongo** | 접미사 제거 |
 | `couple-app` | **couple-map** | 접미사 제거 + 핵심 기능(지도 기록) |
 | `3d-map` | **osm-walker** | OSM을 걸어다닌다는 게 전부예요. `3d-map`은 일반명사 |
