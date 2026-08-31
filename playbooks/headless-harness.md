@@ -6,9 +6,9 @@
 
 ## 전제 하나
 
-**시뮬레이션 계층이 렌더러를 import 하지 않는다.**
+**시뮬레이션 계층이 렌더러를 import 하지 않습니다.**
 
-`game/scripts/balance.js` 첫 주석이 이걸 정확히 말해줘요:
+`game/scripts/balance.js` 첫 주석이 이걸 정확히 말해 줍니다:
 
 > Runs the full game simulation in Node — no renderer, no browser (…) This is
 > possible only because the simulation never imports PixiJS: the whole game is
