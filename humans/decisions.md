@@ -79,7 +79,7 @@
 
 ## 외부 API 호출 게이트 — 전역 직렬 큐 · 적응형 간격
 
-**어디** — `pulse-dashboard` (`kisFetch`)
+**어디** — `stock-pulse` (`kisFetch`)
 
 **결정** — 모든 KIS 호출이 전역 직렬 큐를 통과합니다. 간격은 **적응형** —
 5xx/429면 ×1.6, 성공하면 −15ms (200~1600ms 범위).
@@ -133,7 +133,7 @@
 
 ## 외부 정답 대조 — KASI·골든 코퍼스 검증
 
-**어디** — `myeongni-seojae` (`verify-kasi.ts` · `verify-python.ts` · 골든 코퍼스)
+**어디** — `myeongri-seojae` (`verify-kasi.ts` · `verify-python.ts` · 골든 코퍼스)
 
 **결정** — 절기 계산을 천체력으로 1900~2050 전 구간 검증하고, 그 위에
 한국천문연구원(KASI) 공식 값과 한 번 더 대조합니다.
@@ -149,7 +149,7 @@
 
 ## 문서 수치 자동 동기화 — 스크립트 실측 기입
 
-**어디** — `myeongni-seojae` (`scripts/sync-docs.ts`)
+**어디** — `myeongri-seojae` (`scripts/sync-docs.ts`)
 
 **결정** — README의 테스트 개수를 타이핑하지 않고 스크립트가 세어서 채웁니다.
 
@@ -158,7 +158,7 @@
 
 | 레포 | 문서 주장 | 실측 |
 |---|---|---|
-| `myeongni-seojae` | 514 · 161 | 556 · 206 |
+| `myeongri-seojae` | 514 · 161 | 556 · 206 |
 | `dungeon-craft` | 317+ / 279 | 402 |
 | `crypt-survivors` | 226 | 282 |
 

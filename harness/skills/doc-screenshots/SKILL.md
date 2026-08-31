@@ -8,7 +8,7 @@ description: Generate README and portfolio screenshots with the same browser aut
 **손으로 찍은 스크린샷은 손으로 적은 숫자와 똑같이 낡는다.** 화면을 고칠
 때마다 다시 찍어야 하는데 아무도 안 한다. 그래서 테스트와 같은 도구로 만든다.
 
-참조 구현: `myeongni-seojae/e2e/screenshots.spec.ts` (실제로 도는 것)
+참조 구현: `myeongri-seojae/e2e/screenshots.spec.ts` (실제로 도는 것)
 
 ## 왜 필요한가
 
@@ -99,7 +99,7 @@ diff 가 쓸모없어진다.
 
 기본 스펙에서 애니메이션을 죽이는 fixture 를 쓰면 스크린샷이 결정적이 된다.
 움직임 자체를 봐야 하는 테스트만 별도 프로젝트로 분리한다
-(`myeongni-seojae` 는 `motion` 프로젝트를 따로 뒀다).
+(`myeongri-seojae` 는 `motion` 프로젝트를 따로 뒀다).
 
 ## 비밀정보 주의
 

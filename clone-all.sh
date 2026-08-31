@@ -13,7 +13,7 @@ OWNER=gook-lab
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 WS="$HERE/workspace"
 
-REPOS=(pig-ma crypt-survivors dungeon-craft pulse-dashboard myeongni-seojae
+REPOS=(pig-ma crypt-survivors dungeon-craft stock-pulse myeongri-seojae
        nihongo couple-map osm-walker rhythm-godot)
 
 mkdir -p "$WS"
