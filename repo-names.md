@@ -2,7 +2,7 @@
 
 **2026-08-22에 확정했습니다.** 소유 계정은 `gook-lab`입니다.
 
-디렉토리 이름은 제 컴퓨터에서만 의미가 있죠. **레포 이름은 남이 보는 이름**이라
+디렉토리 이름은 제 컴퓨터에서만 의미가 있습니다. **레포 이름은 남이 보는 이름**이라
 기준이 다릅니다 — 제품명이 있으면 제품명을 쓰고, 일반명사와 접미사는 버립니다.
 
 | 원칙 | |
@@ -24,7 +24,7 @@
 | `saju` | **myeongri-seojae** | 제품명이 명리서재. 짧게 가려면 `saju-seojae` |
 | `nihongo-app` | **nihongo** | 접미사 제거 |
 | `couple-app` | **couple-map** | 접미사 제거 + 핵심 기능(지도 기록) |
-| `3d-map` | **osm-walker** | OSM을 걸어다닌다는 게 전부예요. `3d-map`은 일반명사 |
+| `3d-map` | **osm-walker** | OSM을 걸어다닌다는 것이 전부입니다. `3d-map`은 일반명사 |
 | `rhythm-godot` | **rhythm-godot** (유지) | Godot 리듬게임 구현 참고 자료로서 엔진명이 검색에 유리 |
 
 ### 히스토리 정리 후 (Unity 3종)
@@ -35,7 +35,7 @@
 | `dragon-game-jrpg` | **dungeon-craft-jrpg** |
 | `zombie-unity` | **zombie-escape** |
 
-> 셋은 `dungeon-craft` 계열임을 이름으로 드러내는 게 나아요 — 실제로 같은 `Core/`
+> 셋은 `dungeon-craft` 계열임을 이름으로 드러내는 것이 낫습니다 — 실제로 같은 `Core/`
 > 데이터 계층을 공유하고 JS 원본에서 갈라져 나온 포크이기 때문입니다.
 
 ### 허브
