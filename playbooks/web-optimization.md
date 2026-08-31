@@ -33,7 +33,7 @@
 - 죽은 코드 제거·의존성 정리는 **번들 diff(gzip Δ)로 미포함을 확인한 뒤**
   지웁니다.
 - 무거운 선택 기능(PDF 내보내기 등)은 dynamic import로 분리합니다.
-- 폴링·타이머는 `document.hidden` 게이트를 겁니다 (pulse-dashboard 규약).
+- 폴링·타이머는 `document.hidden` 게이트를 겁니다 (stock-pulse 규약).
 
 ## 점검 커맨드
 

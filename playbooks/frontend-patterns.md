@@ -21,7 +21,7 @@ domain/    도메인별 컴포넌트
   동작입니다.
 - **네이티브 요소를 직접 쓰지 않습니다**: `<button>` → `<Button>`,
   `alert()`/`confirm()` → `<Dialog>`/`<ConfirmDialog>`, 애드혹 로딩 텍스트
-  → `<Loading>`. pulse-dashboard의 `components/common` 강제 규칙,
+  → `<Loading>`. stock-pulse의 `components/common` 강제 규칙,
   couple-map 디자인 시스템의 금지 목록이 같은 원리의 토이 구현입니다.
 
 ## 2. UI 프리미티브 래핑 규칙

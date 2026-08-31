@@ -25,8 +25,8 @@ cd guk-lab-docs
 | `crypt-survivors` | npm | 7153 | — |
 | `dungeon-craft` | npm | 9153 | — |
 | `osm-walker` | npm | 3000 | — |
-| `myeongni-seojae` | **pnpm** | 기본(5173) | — |
-| `pulse-dashboard` | **pnpm** | 5180 | 백엔드 프록시 별도 기동 |
+| `myeongri-seojae` | **pnpm** | 기본(5173) | — |
+| `stock-pulse` | **pnpm** | 5180 | 백엔드 프록시 별도 기동 |
 | `nihongo` | npm | 5000 | `.env` 10개 (Firebase · Gemini) |
 | `couple-map` | npm | 6173 | `.env` 6개 (Firebase · 카카오지도) |
 | `rhythm-godot` | — | — | Godot 4.7 |
@@ -43,7 +43,7 @@ npm run dev
 `.env.example`을 복사해서 채워 주세요. **키는 각자 발급받아야 합니다** — 레포에는
 없습니다(있으면 그게 사고입니다).
 
-`pulse-dashboard`는 프론트만 띄우면 실시간 데이터가 오지 않습니다. 백엔드 프록시를
+`stock-pulse`는 프론트만 띄우면 실시간 데이터가 오지 않습니다. 백엔드 프록시를
 같이 띄워야 하고, KIS 모의계좌 키가 있어야 체결/호가가 흐릅니다. 키 없이도 화면
 구조는 볼 수 있는데, **실데이터가 없는 자리는 목이 아니라 `-`로 표시됩니다** —
 의도된 동작입니다.
@@ -67,7 +67,7 @@ npm run dev
 ```bash
 npm test                # 대부분
 npx vitest run          # 명시적으로
-npx playwright test     # E2E 가 있는 레포 (pig-ma, myeongni-seojae)
+npx playwright test     # E2E 가 있는 레포 (pig-ma, myeongri-seojae)
 ```
 
 `pig-ma`는 lint 게이트가 따로 있습니다:

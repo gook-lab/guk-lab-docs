@@ -12,9 +12,9 @@
 화이트보드를 처음부터 만들면 뭐가 어려운지 궁금해서 시작했습니다. 도형·커넥터·
 스티키노트·리치텍스트·댓글까지 붙었고, npm 라이브러리로도 배포하고 있습니다.
 
-**흥미로운 지점** — 텍스트를 두 벌로 렌더링해요. 볼 때는 Konva Text(캔버스 안,
-DOM 없음), 편집할 때는 Tiptap(HTML 오버레이)이죠. 둘의 padding·lineHeight 상수가
-1px만 어긋나도 편집을 시작하는 순간 글자가 튀어요. 그래서 상수를 `constants/`에
+**흥미로운 지점** — 텍스트를 두 벌로 렌더링합니다. 볼 때는 Konva Text(캔버스 안,
+DOM 없음), 편집할 때는 Tiptap(HTML 오버레이)입니다. 둘의 padding·lineHeight 상수가
+1px만 어긋나도 편집을 시작하는 순간 글자가 튑니다. 그래서 상수를 `constants/`에
 모아 양쪽이 같은 값을 보게 했습니다.
 
 5,000개 노드에서 줌이 36fps였습니다. 범인은 짐작했던 localStorage 저장(7%)이
@@ -25,7 +25,7 @@ DOM 없음), 편집할 때는 Tiptap(HTML 오버레이)이죠. 둘의 padding·l
 
 ## 데이터 · 계산
 
-### [myeongni-seojae](https://github.com/gook-lab/myeongni-seojae) — 명리서재
+### [myeongri-seojae](https://github.com/gook-lab/myeongri-seojae) — 명리서재
 
 사주 사이트인데 "오늘의 운세 87점" 같은 건 하지 않습니다. 인생을 **10년 단위(대운)로
 펼쳐** 놓고 "여기가 당신의 25~34세"라고 짚어줍니다. 사람이 소름 돋는 순간은 오늘
@@ -41,10 +41,10 @@ DOM 없음), 편집할 때는 Tiptap(HTML 오버레이)이죠. 둘의 padding·l
 
 | 시작 | 계산 | 대운 타임라인 |
 |---|---|---|
-| <img src="https://raw.githubusercontent.com/gook-lab/myeongni-seojae/main/docs/screenshots/01-intro.png" width="230"> | <img src="https://raw.githubusercontent.com/gook-lab/myeongni-seojae/main/docs/screenshots/04-calculating.png" width="230"> | <img src="https://raw.githubusercontent.com/gook-lab/myeongni-seojae/main/docs/screenshots/05-result.png" width="230"> |
+| <img src="https://raw.githubusercontent.com/gook-lab/myeongri-seojae/main/docs/screenshots/01-intro.png" width="230"> | <img src="https://raw.githubusercontent.com/gook-lab/myeongri-seojae/main/docs/screenshots/04-calculating.png" width="230"> | <img src="https://raw.githubusercontent.com/gook-lab/myeongri-seojae/main/docs/screenshots/05-result.png" width="230"> |
 
 
-### [pulse-dashboard](https://github.com/gook-lab/pulse-dashboard) — PULSE 시황 대시보드
+### [stock-pulse](https://github.com/gook-lab/stock-pulse) — PULSE 시황 대시보드
 
 한국·미국 시장을 한 화면에 담았습니다. 실시간 체결/호가, 히트맵, 감성 스코어 뉴스,
 모의 포트폴리오, 그리고 부동산 단지를 OSM 발자국에서 압출한 3D 배치도까지입니다.
@@ -131,12 +131,12 @@ Tween은 프레임 시간을 따르는 두 번째 시간축이라, 오디오와 
 
 | 프로젝트 | 상태 |
 |---|---|
-| `myeongni-seojae` | 자체 파이프라인(`pnpm shots`)으로 13장 |
-| `pig-ma` · `crypt-survivors` · `dungeon-craft` · `nihongo` · `couple-map` · `pulse-dashboard` | 헤드리스 브라우저로 촬영 |
+| `myeongri-seojae` | 자체 파이프라인(`pnpm shots`)으로 13장 |
+| `pig-ma` · `crypt-survivors` · `dungeon-craft` · `nihongo` · `couple-map` · `stock-pulse` | 헤드리스 브라우저로 촬영 |
 | `osm-walker` | **못 찍었습니다** — 헤드리스 크롬에 WebGL이 없어서 Three.js 씬이 빈 화면으로 나옵니다 (2D 미니맵만 렌더됩니다). GPU 있는 브라우저가 필요합니다 |
 | `rhythm-godot` | 웹이 아니라 Godot 실행이 필요합니다 |
 
-`pulse-dashboard`는 백엔드 없이 찍어서 빈 상태입니다 — 다만 그 빈 상태 자체가
+`stock-pulse`는 백엔드 없이 찍어서 빈 상태입니다 — 다만 그 빈 상태 자체가
 설계 결정입니다. 실데이터가 없으면 목이 아니라 `-`를 보여주기 때문입니다.
 
 절차는 [doc-screenshots 스킬](../harness/skills/doc-screenshots/SKILL.md)에

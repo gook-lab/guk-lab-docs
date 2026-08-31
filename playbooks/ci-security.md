@@ -13,8 +13,8 @@
 |---|---|---|
 | guk-lab-docs | 문서 링크 검사 + 스킬 설치 dry-run | ✅ |
 | pig-ma | typecheck · lint:gate · vitest · build | ✅ |
-| myeongni-seojae | typecheck · build · vitest · Playwright e2e | ✅ |
-| pulse-dashboard | test · build | ✅ |
+| myeongri-seojae | typecheck · build · vitest · Playwright e2e | ✅ |
+| stock-pulse | test · build | ✅ |
 | dungeon-craft | vitest · build · 밸런스 하네스 | ✅ |
 | crypt-survivors | test · build · 밸런스 하네스(3시드) | ✅ |
 | nihongo | lint:gate · test · build | ✅ |
@@ -52,7 +52,7 @@
   다른 문으로 들어오면 같은 검사
   ([기술 선택 기록](../humans/decisions.md)).
 - **브라우저는 외부 API에 직결하지 않습니다** — 키·레이트리밋은 서버 프록시
-  책임 (pulse-dashboard 불변식).
+  책임 (stock-pulse 불변식).
 - `dangerouslySetInnerHTML`·`eval`류는 각 레포 룰에서 금지하고, 예외는
   근거와 함께 기록합니다.
 
