@@ -89,6 +89,12 @@ description: 프로젝트 README·Notion 상세·이력서·웹 포트폴리오 
 문제 하나당 원인과 검증이 보일 만큼 설명하되 같은 사실을 여러 절에서 반복하지
 않습니다.
 
+여러 프로젝트를 갤러리로 정리하거나 이미지 패키지까지 만들어야 한다면
+[`references/notion-project-package.md`](references/notion-project-package.md)를 먼저
+읽습니다. 붙여넣기용 본문은
+[`assets/notion-project-template.md`](assets/notion-project-template.md)를 프로젝트에
+맞게 복사해 사용합니다.
+
 ### 이력서
 
 지원 직무와 가까운 사례를 먼저 둡니다. 한 불릿에는 행동과 결과 하나를 담고,
