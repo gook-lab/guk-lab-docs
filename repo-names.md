@@ -26,6 +26,7 @@
 | `couple-app` | **couple-map** | 접미사 제거 + 핵심 기능(지도 기록) |
 | `3d-map` | **osm-walker** | OSM을 걸어다닌다는 것이 전부입니다. `3d-map`은 일반명사 |
 | `rhythm-godot` | **rhythm-godot** (유지) | Godot 리듬게임 구현 참고 자료로서 엔진명이 검색에 유리 |
+| `design-system` | **modul** | 제품명 사용. npm 스코프(`@modul/ui` · `@modul/tokens`)와 레포명을 맞췄습니다. 2026-09-04 확정 |
 
 ### 히스토리 정리 후 (Unity 3종)
 
@@ -49,6 +50,7 @@
 | 레포 | 라이선스 | 이유 |
 |---|---|---|
 | `pig-ma` | **MIT** | 이미 npm에 MIT로 배포됐습니다. 나간 버전의 MIT는 소급 철회가 안 되고, 라이브러리는 애초에 쓰라고 만든 것이기 때문입니다 |
+| `modul` | **MIT** | npm 배포를 전제로 한 컴포넌트 라이브러리입니다. `pig-ma` 와 같은 사유 — 라이브러리는 쓰라고 만든 것입니다 |
 | `guk-lab-docs` | **CC BY-NC 4.0** | 글입니다. 공유되되 되팔리지 않게 |
 | 나머지 8개 | **Source-available (all rights reserved)** | 포트폴리오로 보이되 가져다 쓰지는 못하게 |
 
