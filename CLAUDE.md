@@ -11,3 +11,15 @@
 - README를 고치면 README.en.md도 같은 커밋에서 고친다.
 - 문서 수정 후에는 `node harness/skills/audit-docs/check-docs.mjs` 로 링크를
   검사한다.
+
+## UI 컴포넌트 — MODUL 우선
+
+guk-lab 프로젝트의 React 화면에 일반 UI 컴포넌트가 필요하면 새로 만들기 전에
+MODUL 을 먼저 본다. 소비 규칙은
+[playbooks/modul-design-system.md](playbooks/modul-design-system.md) 에 있고,
+에이전트가 매 세션 읽는 요약은 `~/.claude/rules/modul-design-system.md` 다.
+
+- 레포 https://github.com/gook-lab/modul · 로컬 `~/sonix/toy/design-system/modul`
+- 도메인 어휘가 들어간 컴포넌트는 코어에 올리지 않는다 — 위스키 앱 전용은
+  `@malt/ui-web-next` 에 있다.
+- 기존 앱을 옮길 때는 `modul/docs/migration-bottling.md` 의 순서를 따른다.
