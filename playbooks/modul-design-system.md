@@ -202,6 +202,22 @@ lint·test 규칙을 끄는 것도 같은 목록에 있습니다. `no-restricted
 쪽으로 넘기는 편이 좋습니다. 측정 방식은 [measure-first](measure-first.md)와 같습니다 —
 바꾸기 전에 재고, 잰 값을 커밋에 남깁니다.
 
+## 기존 앱 옮기기 — 토큰부터 화면까지
+
+이미 다른 스타일 시스템 위에 서 있는 앱은 한 번에 갈아엎지 않습니다. 순서는
+토큰 → 프리미티브 → 셸 → 화면이고, 각 단계가 독립 PR 입니다. 자세한 12단계와
+codemod 목록은 `modul/docs/migration-bottling.md` 에 있습니다.
+
+첫 단계인 CSS 변수 이름 교체는 `modul/scripts/codemods/01-tokens.ts` 가 합니다.
+매핑은 추측이 아니라 두 저장소의 **값을 대조해서** 만들었고, 값이 어긋나면
+`01-tokens.test.ts` 가 먼저 실패합니다. bottling 의 `apps/web/src/styles.css`
+에 돌려 본 결과는 `var()` 참조 545개 중 536개 변환이었습니다(2026-09-06 실측).
+
+남은 아홉은 값이 다르거나 MODUL 에 대응 역할이 없어서 일부러 남긴 것들입니다.
+그 이유는 코드모드의 `KEPT` 표에 적혀 있습니다 — 예를 들어 `--stock-low` 는
+bottling 값(`#D8A33F`)이 cream 위 2.05 로 4.5:1 에 못 미쳐, 색을 먼저 정한 뒤
+옮겨야 합니다.
+
 ## 새 프로젝트 부팅 체크리스트
 
 1. `@modul/tokens` · `@modul/ui` 설치, 폼을 쓴다면 `react-hook-form` · `zod` ·
