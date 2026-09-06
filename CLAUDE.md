@@ -21,5 +21,5 @@ MODUL 을 먼저 본다. 소비 규칙은
 
 - 레포 https://github.com/gook-lab/modul · 로컬 `~/sonix/toy/design-system/modul`
 - 도메인 어휘가 들어간 컴포넌트는 코어에 올리지 않는다 — 위스키 앱 전용은
-  `@malt/ui-web-next` 에 있다.
+  `@gook-lab/malt-ui` 에 있다.
 - 기존 앱을 옮길 때는 `modul/docs/migration-bottling.md` 의 순서를 따른다.
