@@ -110,7 +110,7 @@ MODUL 의 컴포넌트 CSS 는 전부 `@layer modul` 안에 있습니다. CSS �
 
 `theme.json` 이 정하는 것은 **base 값**입니다 — 테마별 bg · surface · text · accent ·
 divider, 폰트, 반경, 간격, 모션, 이징. 이 값을 바꿀 때는 `theme.json` 과 배포 CSS
-(`styles.css` · `theme-malt.css`)를 같이 고칩니다. `pnpm --filter @gook-lab/tokens build` 가
+(`styles.css` · `theme-malt-vars.css`)를 같이 고칩니다. `pnpm --filter @gook-lab/tokens build` 가
 둘을 대조해 어긋나면 어느 변수가 왜 다른지 찍고 실패합니다.
 
 램프(`--color-neutral-100..900` · `--color-accent-100..900`)는 생성물이 아니라 손으로
@@ -222,15 +222,22 @@ lint·test 규칙을 끄는 것도 같은 목록에 있습니다. `no-restricted
 토큰 → 프리미티브 → 셸 → 화면이고, 각 단계가 독립 PR 입니다. 자세한 12단계와
 codemod 목록은 `modul/docs/migration-bottling.md` 에 있습니다.
 
+토큰 단계의 진입점은 **변수 전용 `theme-malt-vars.css`** 와 `<html data-theme="malt">`
+입니다. `styles.css` 나 `theme-malt.css` 전체를 들이지 않습니다 — 베이스 요소 규칙
+(body 15px/1.55, `h2{font-weight:400}`)이 앱 타이포를 밀어냅니다. bottling 실측
+(2026-09-06): styles.css 를 들이면 랜딩에서 다른 픽셀 11.9%, theme-malt.css 는
+`.stub__h2` 의 weight 500→400, vars 파일이면 0%.
+
 첫 단계인 CSS 변수 이름 교체는 `modul/scripts/codemods/01-tokens.ts` 가 합니다.
 매핑은 추측이 아니라 두 저장소의 **값을 대조해서** 만들었고, 값이 어긋나면
-`01-tokens.test.ts` 가 먼저 실패합니다. bottling 의 `apps/web/src/styles.css`
-에 돌려 본 결과는 `var()` 참조 545개 중 536개 변환이었습니다(2026-09-06 실측).
+`01-tokens.test.ts` 가 먼저 실패합니다. 치환은 이름 끝 경계 정규식이어야 합니다 —
+단순 문자열 치환은 매핑 밖의 더 긴 이름(`--color-ink-soft`)을 잘라먹습니다.
 
-남은 아홉은 값이 다르거나 MODUL 에 대응 역할이 없어서 일부러 남긴 것들입니다.
-그 이유는 코드모드의 `KEPT` 표에 적혀 있습니다 — 예를 들어 `--stock-low` 는
-bottling 값(`#D8A33F`)이 cream 위 2.05 로 4.5:1 에 못 미쳐, 색을 먼저 정한 뒤
-옮겨야 합니다.
+bottling 에 실제로 돌린 결과(2026-09-06, [PR #65](https://github.com/gook-lab/bottling/pull/65)):
+`var()` 참조 549개 중 468개가 MODUL 이름이 됐고, 전 라우트 스크린샷 픽셀 diff 0
+이었습니다. 남긴 81개는 도메인 전용(`--camp-*` 18개), 앱 전용 값(`--size-touch-target`
+36개 등 — 이유는 코드모드의 `KEPT` 표), 그리고 프리셋 밖 모션 3종
+(`--duration-sheet-up` 220ms 등 — 화면 보고 move/page 로 옮길 후속 건)입니다.
 
 ## 새 프로젝트 부팅 체크리스트
 
