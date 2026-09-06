@@ -236,8 +236,11 @@ codemod 목록은 `modul/docs/migration-bottling.md` 에 있습니다.
 bottling 에 실제로 돌린 결과(2026-09-06, [PR #65](https://github.com/gook-lab/bottling/pull/65)):
 `var()` 참조 549개 중 468개가 MODUL 이름이 됐고, 전 라우트 스크린샷 픽셀 diff 0
 이었습니다. 남긴 81개는 도메인 전용(`--camp-*` 18개), 앱 전용 값(`--size-touch-target`
-36개 등 — 이유는 코드모드의 `KEPT` 표), 그리고 프리셋 밖 모션 3종
-(`--duration-sheet-up` 220ms 등 — 화면 보고 move/page 로 옮길 후속 건)입니다.
+36개 등 — 이유는 코드모드의 `KEPT` 표), 그리고 프리셋 밖 모션 3종이었습니다.
+모션은 후속 PR 에서 배선을 마쳤습니다([PR #68](https://github.com/gook-lab/bottling/pull/68)) —
+목록→상세·단계 전환은 `--motion-page`(malt 180ms 라 값 동일), 시트는 move 프리셋
+`--motion-slow`(220→320ms, 유일한 체감 변화). 토큰만 들이는 소비자를 위해 모션·이징
+토큰은 `@gook-lab/tokens` 0.1.1 부터 `theme-malt-vars.css` 에도 들어 있습니다.
 
 ## 새 프로젝트 부팅 체크리스트
 
