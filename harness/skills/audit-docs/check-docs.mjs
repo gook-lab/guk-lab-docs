@@ -207,6 +207,27 @@ for (const file of gitDocs() ?? walk(ROOT)) {
   checkTone(file, lines);
 }
 
+/* ── 5) README 한/영 동기 ─────────────────────────────────────────
+ * STYLE.md '한 / 영 버전': README 를 고치면 README.en.md 도 같은 커밋에서 고친다.
+ * 규약만 있고 검사가 없어 한쪽만 고친 채 커밋되는 것을 막지 못했습니다.
+ * 비교는 git 로그 시각으로 합니다 — 파일 mtime 은 clone 하면 전부 같아집니다.
+ */
+{
+  const lastCommit = f => {
+    const r = spawnSync("git", ["log", "-1", "--format=%ct", "--", f], { cwd: ROOT, encoding: "utf8" });
+    return Number(r.stdout?.trim() || 0);
+  };
+  for (const ko of (gitDocs() ?? walk(ROOT)).filter(f => /(^|\/)README\.md$/.test(relative(ROOT, f)))) {
+    const en = ko.replace(/README\.md$/, "README.en.md");
+    if (!existsSync(en)) continue;
+    const koAt = lastCommit(ko), enAt = lastCommit(en);
+    if (koAt && enAt && koAt > enAt) {
+      const days = Math.round((koAt - enAt) / 86400);
+      add(en, 1, "readme-drift", `README.md 가 ${days}일 더 최근입니다 — 같은 커밋에서 함께 고쳐 주세요`);
+    }
+  }
+}
+
 if (problems.length === 0) {
   console.log("✓ 문서 검사 통과 — 죽은 링크 0, 깨진 표 0, 톤 위반 0" + (CHECK_PATHS ? ", 없는 경로 0" : ""));
   process.exit(0);
@@ -223,6 +244,7 @@ const LABEL = {
   "plain-ending": "반말 종결 — 본문 문장이 '~다'로 끝난다 (STYLE.md)",
   "double-past": "이중과거 — 어미 일괄 전환이 남긴 '~였었/했었' 흔적",
   "broken-conjugation": "오변환 — 어미 전환이 동사 원형을 깨뜨린 형태 (STYLE.md 함정 목록)",
+  "readme-drift": "README 한/영 어긋남 — 한쪽만 고친 채 커밋됐다 (STYLE.md '한 / 영 버전')",
 };
 for (const [kind, items] of Object.entries(byKind)) {
   console.error(`\n[${kind}] ${LABEL[kind]} (${items.length}건)`);

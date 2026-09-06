@@ -3,7 +3,7 @@
 `~/sonix/toy/` 아래 토이 프로젝트 전수 목록입니다. 각 프로젝트의 상세는 그 레포의
 `README.md` / `CLAUDE.md`가 단일 소스라서, **여기에 복제하지 않습니다.**
 
-조사 시점: 2026-08-22. (2026-08-24 갱신: 신규 2건 — water-balloon-arcade, roomcast · roomcast는 같은 날 공개)
+조사 시점: 2026-08-22. (2026-08-24 갱신: 신규 2건 — water-balloon-arcade, roomcast · roomcast는 같은 날 공개 / 2026-09-04 갱신: 신규 1건 — design-system/modul, 같은 날 공개)
 
 ## 공개 가능 — 그대로 올릴 수 있습니다
 
@@ -15,6 +15,7 @@
 | **rhythm-godot** | 얼불춤(ADOFAI)류 원버튼 리듬게임. 시간축을 오디오 클럭 하나로 통일 | Godot 4.7 · GDScript · Python(표준 라이브러리만) | 4.3M / 54 | 2026-08-11 |
 | **dragon-game** | 던전크래프트 — 드래곤퀘스트풍 턴제 RPG. 전투 리졸버가 PixiJS를 import 하지 않아 헤드리스 검증 가능 | JS(ESM) · PixiJS v8 · Vite · Vitest | 29M / 98 | 2026-07-21 |
 | **roomcast** | 3D 인테리어 배치 도구 — 2D 평면도 에디터 + 1인칭 워크스루 + 조감도. 평면도 모델 하나(SSOT)에서 2D/3D 파생. 구현 진행 중 | React 18 · TS · Vite · R3F | 2.0M / 22 | 2026-08-24 |
+| **design-system/modul** | MODUL — 헤드리스 React 컴포넌트 라이브러리. 토큰 = CSS 변수 · 네이티브 속성 통과 · `@layer` 밖 앱 CSS 우선 | React 18 · TS · tsup · Radix · Storybook 8 · Vitest | 9 커밋 | 2026-09-04 |
 
 ### git 초기화가 필요한 것 (원격 없음)
 
