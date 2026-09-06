@@ -2,19 +2,33 @@
 
 MODUL 은 토이 프로젝트들에서 반복해 만들던 폼·표·오버레이를 한 벌로 모은 React
 컴포넌트 라이브러리입니다. 이 문서는 라이브러리를 **만드는 쪽**이 아니라 **가져다 쓰는
-쪽**의 규칙서입니다. 새 프로젝트에서 `@modul/ui` 를 붙일 때 무엇을 임포트하고, 무엇을
+쪽**의 규칙서입니다. 새 프로젝트에서 `@gook-lab/ui` 를 붙일 때 무엇을 임포트하고, 무엇을
 덮어쓸 수 있고, 어디까지가 앱의 몫인지를 정리했습니다.
 
 원본은 MODUL 저장소의 `PROMPT.md`(절대 계약 6개)와 `docs/` 입니다. 여기에는 소비자
 관점으로 옮긴 규칙만 두고 수치는 원본 경로를 함께 적었습니다. 값이 어긋나면 원본이
 맞습니다.
 
+## 패키지 스코프 — @gook-lab (2026-09-06 변경)
+
+처음에는 `@modul/*` 이었지만 npm 의 `@modul` 스코프가 ModulBank 소유라는 것을
+배포 직전에 확인했습니다(`@modul/ui` v0.1.34 · 릴리스 221회). 패키지는 전부
+`@gook-lab/*` 이고, 레지스트리는 GitHub Packages 입니다. 소비자 저장소에
+`.npmrc` 한 줄이 필요합니다.
+
+```
+@gook-lab:registry=https://npm.pkg.github.com
+```
+
+설치에는 `read:packages` 권한이 있는 GitHub 토큰이 필요합니다. 디자인 시스템의
+이름은 그대로 MODUL 이고 레포도 `gook-lab/modul` 입니다 — 바뀐 것은 npm 스코프뿐입니다.
+
 ## 설치와 진입점 — 패키지 4종 · CSS 한 줄 · Provider 하나
 
 ```tsx
 // 앱 엔트리에서 한 번
-import '@modul/tokens/styles.css';
-import { ModulProvider, Button } from '@modul/ui';
+import '@gook-lab/tokens/styles.css';
+import { ModulProvider, Button } from '@gook-lab/ui';
 
 <ModulProvider theme="light">   {/* 'light' | 'dark' | 'malt' */}
   <Button variant="primary">저장</Button>
@@ -23,10 +37,10 @@ import { ModulProvider, Button } from '@modul/ui';
 
 | 패키지 | 무엇 | 진입점 |
 |---|---|---|
-| `@modul/tokens` | CSS 변수 + 컴포넌트 클래스 | `@modul/tokens/styles.css` · 값은 `theme.json` |
-| `@modul/ui` | 컴포넌트 40여 종 | `import { Button } from '@modul/ui'` |
-| `@modul/motion` | 모션 훅·컴포넌트 + 프리셋 8종 | `@modul/motion` |
-| `@modul/icons` | Lucide 재export | `@modul/icons` |
+| `@gook-lab/tokens` | CSS 변수 + 컴포넌트 클래스 | `@gook-lab/tokens/styles.css` · 값은 `theme.json` |
+| `@gook-lab/ui` | 컴포넌트 40여 종 | `import { Button } from '@gook-lab/ui'` |
+| `@gook-lab/motion` | 모션 훅·컴포넌트 + 프리셋 8종 | `@gook-lab/motion` |
+| `@gook-lab/icons` | Lucide 재export | `@gook-lab/icons` |
 
 `ModulProvider` 는 `document.documentElement.dataset.theme` 를 설정하고 라벨·토스트·툴팁
 Provider 를 함께 묶습니다(`packages/ui/src/ModulProvider.tsx`). 테마만 바꾸고 싶다면
@@ -96,7 +110,7 @@ MODUL 의 컴포넌트 CSS 는 전부 `@layer modul` 안에 있습니다. CSS �
 
 `theme.json` 이 정하는 것은 **base 값**입니다 — 테마별 bg · surface · text · accent ·
 divider, 폰트, 반경, 간격, 모션, 이징. 이 값을 바꿀 때는 `theme.json` 과 배포 CSS
-(`styles.css` · `theme-malt.css`)를 같이 고칩니다. `pnpm --filter @modul/tokens build` 가
+(`styles.css` · `theme-malt.css`)를 같이 고칩니다. `pnpm --filter @gook-lab/tokens build` 가
 둘을 대조해 어긋나면 어느 변수가 왜 다른지 찍고 실패합니다.
 
 램프(`--color-neutral-100..900` · `--color-accent-100..900`)는 생성물이 아니라 손으로
@@ -126,7 +140,7 @@ divider, 폰트, 반경, 간격, 모션, 이징. 이 값을 바꿀 때는 `theme
 
 움직이는 속성은 `transform` · `opacity` · `clip-path` 세 가지입니다. `height` · `top` 처럼
 레이아웃을 다시 계산하는 속성은 애니메이션 대상에서 뺍니다. 애니메이션 라이브러리는
-현재 0 의존이므로, 새로 추가하려면 `@modul/motion` 밖에서 이유를 적고 씁니다.
+현재 0 의존이므로, 새로 추가하려면 `@gook-lab/motion` 밖에서 이유를 적고 씁니다.
 
 ## 데이터 경계 — fetch · 검증 · 라우팅은 앱이 소유
 
@@ -170,7 +184,7 @@ MODUL 저장소 `PROMPT.md` 4절의 "하지 말 것" 9개를 소비자 관점으
 | 프리셋 밖 duration·easing 도입 | 화면마다 속도가 달라지고 축소 모션 분기가 빠집니다 | 프리셋 8종에서 고릅니다 |
 | Tailwind 를 라이브러리 전제로 깔기 | 클래스 우선순위와 레이어가 얽힙니다 | 선택은 앱의 몫이고 라이브러리는 CSS 변수 + 클래스만 씁니다 |
 | 차트를 라이브러리 안에서 확장 | SVG 3종 범위를 넘어 번들이 커집니다 | 별도 패키지로 두고 토큰만 공유합니다 |
-| 도메인 프리미티브를 코어로 승격 | 한 앱의 업무 개념이 전 프로젝트에 딸려 옵니다 | 앱 전용 패키지에 두고 `@modul/ui` 에 넣지 않습니다 |
+| 도메인 프리미티브를 코어로 승격 | 한 앱의 업무 개념이 전 프로젝트에 딸려 옵니다 | 앱 전용 패키지에 두고 `@gook-lab/ui` 에 넣지 않습니다 |
 
 lint·test 규칙을 끄는 것도 같은 목록에 있습니다. `no-restricted-syntax` 가 색 리터럴과
 폰트 리터럴을 잡는데, 규칙을 끄면 어긋난 값이 그대로 배포됩니다. 규칙을 끄는 대신 값을
@@ -181,18 +195,18 @@ lint·test 규칙을 끄는 것도 같은 목록에 있습니다. `no-restricted
 `docs/performance-budget.md` 의 값이고 MODUL 의 CI 가 `size-limit` 으로 강제합니다.
 앱에서 초과하면 lazy 분할이나 가상화를 검토합니다.
 
-`@modul/ui` 는 엔트리가 컴포넌트별로 나뉘어 있어서 `import { Button } from '@modul/ui'`
+`@gook-lab/ui` 는 엔트리가 컴포넌트별로 나뉘어 있어서 `import { Button } from '@gook-lab/ui'`
 만으로는 Radix 가 따라오지 않습니다(실측 1.83 KB). 배럴 하나로 번들하면 최상단 import
 문이 트리셰이킹 뒤에도 남아 47 KB 가 됩니다 — Radix · cmdk · react-day-picker 가
 `sideEffects: false` 를 선언하지 않기 때문입니다.
 
 | 항목 | 예산 |
 |---|---|
-| `@modul/tokens` CSS | 8 KB (gzip) |
-| `@modul/ui` — Button+Input+Tag+Card | 4 KB |
-| `@modul/ui` — 전부 (MODUL 코드) | 30 KB |
-| `@modul/ui` — 전부 (Radix 포함) | 74 KB |
-| `@modul/motion` — 훅 + Marquee/Reveal | 3 KB |
+| `@gook-lab/tokens` CSS | 8 KB (gzip) |
+| `@gook-lab/ui` — Button+Input+Tag+Card | 4 KB |
+| `@gook-lab/ui` — 전부 (MODUL 코드) | 30 KB |
+| `@gook-lab/ui` — 전부 (Radix 포함) | 74 KB |
+| `@gook-lab/motion` — 훅 + Marquee/Reveal | 3 KB |
 | lazy 청크 | DatePicker 18 KB · CommandPalette 9 KB |
 | DOM 노드 | 모바일 화면 300 이하 · 데스크톱 1,500 이하 |
 | INP p75 | 200ms 이하 (오버레이 열림 100ms 이하) |
@@ -220,9 +234,9 @@ bottling 값(`#D8A33F`)이 cream 위 2.05 로 4.5:1 에 못 미쳐, 색을 먼�
 
 ## 새 프로젝트 부팅 체크리스트
 
-1. `@modul/tokens` · `@modul/ui` 설치, 폼을 쓴다면 `react-hook-form` · `zod` ·
+1. `@gook-lab/tokens` · `@gook-lab/ui` 설치, 폼을 쓴다면 `react-hook-form` · `zod` ·
    `@hookform/resolvers` 도 함께 설치합니다(peerDependencies)
-2. 엔트리에서 `import '@modul/tokens/styles.css'` 한 줄을 추가합니다
+2. 엔트리에서 `import '@gook-lab/tokens/styles.css'` 한 줄을 추가합니다
 3. 앱 셸을 `ModulProvider` 로 감싸고 `theme` 과 필요한 `labels` 를 넘깁니다
 4. 앱 CSS 가 `@layer` 밖에 있는지 확인합니다 — 덮어쓰기가 되는지 버튼 하나로 시험해
    봅니다
