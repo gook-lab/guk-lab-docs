@@ -37,6 +37,7 @@ node path/to/check-docs.mjs --paths   # 본문에 인용된 코드 경로까지 
 | `casual-ending` | 본문·표 셀의 해요체(`…해요` / `…잡아요 \|`). STYLE.md 톤 규약 위반 |
 | `plain-ending` | 본문 문장이 반말 `~다` 로 끝난다. 문장 단위로 검사해 줄 중간 종결("반경 500m다. 그리고…")도 잡는다 |
 | `double-past` | `~였었습니다/~했었습니다` — 과거의 어미 일괄 전환이 남긴 이중과거 (있다/없다는 예외) |
+| `readme-drift` | `README.md` 만 고치고 `README.en.md` 를 두고 왔다. STYLE.md 는 같은 커밋에서 함께 고치라고 정해 두었지만 검사가 없어 한쪽만 커밋되는 것을 막지 못했다. git 로그 시각으로 비교한다 — 파일 mtime 은 clone 하면 전부 같아진다 |
 | `broken-conjugation` | `킵니다·잠습니다·이예요` 등 어미 전환이 동사 원형을 깨뜨린 형태 (STYLE.md 함정 목록) |
 
 톤 검출 4종은 **사람이 읽는 문서만** 본다 — `CLAUDE.md`·`PROMPT.md`·`skills/`·
