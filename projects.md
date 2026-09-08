@@ -3,29 +3,27 @@
 `~/sonix/toy/` 아래 토이 프로젝트 전수 목록입니다. 각 프로젝트의 상세는 그 레포의
 `README.md` / `CLAUDE.md`가 단일 소스라서, **여기에 복제하지 않습니다.**
 
-조사 시점: 2026-08-22. (2026-08-24 갱신: 신규 2건 — water-balloon-arcade, roomcast · roomcast는 같은 날 공개 / 2026-09-04 갱신: 신규 1건 — design-system/modul, 같은 날 공개)
+조사 시점: 2026-09-08. GitHub `gook-lab` 조직과 로컬 디렉터리를 대조했습니다.
 
-## 공개 가능 — 그대로 올릴 수 있습니다
+## 공개 저장소
 
-| 프로젝트 | 무엇 | 스택 | git | 마지막 커밋 |
-|---|---|---|---|---|
-| **pig** | FigJam 스타일 무한 캔버스 드로잉 앱. npm 라이브러리 `pig-ma`로도 배포 중 | React 18 · TS · Vite · Konva · Zustand | 3.9M / 30 | 2026-08-20 |
-| **saju** | 명리서재 — 인생을 10년 단위(대운)로 펼쳐 보는 사주 사이트. 생년월일은 로컬 계산(서버 전송 없음) | React 19 · TS · Vite · Tailwind v4 · Zustand | 25M / 39 | 2026-08-22 |
-| **stock-analysis** | PULSE — 한국·미국 시황 통합 다크 트레이딩 대시보드. KIS 실시간 체결/호가 SSE, 히트맵, 감성 뉴스, 모의 포트폴리오, 부동산 3D 배치도 | React 18 · TS · Vite · Node 프록시 | 4.1M / 43 | 2026-08-05 |
-| **rhythm-godot** | 얼불춤(ADOFAI)류 원버튼 리듬게임. 시간축을 오디오 클럭 하나로 통일 | Godot 4.7 · GDScript · Python(표준 라이브러리만) | 4.3M / 54 | 2026-08-11 |
-| **dragon-game** | 던전크래프트 — 드래곤퀘스트풍 턴제 RPG. 전투 리졸버가 PixiJS를 import 하지 않아 헤드리스 검증 가능 | JS(ESM) · PixiJS v8 · Vite · Vitest | 29M / 98 | 2026-07-21 |
-| **roomcast** | 3D 인테리어 배치 도구 — 2D 평면도 에디터 + 1인칭 워크스루 + 조감도. 평면도 모델 하나(SSOT)에서 2D/3D 파생. 구현 진행 중 | React 18 · TS · Vite · R3F | 2.0M / 22 | 2026-08-24 |
-| **design-system/modul** | MODUL — 헤드리스 React 컴포넌트 라이브러리. 토큰 = CSS 변수 · 네이티브 속성 통과 · `@layer` 밖 앱 CSS 우선 | React 18 · TS · tsup · Radix · Storybook 8 · Vitest | 9 커밋 | 2026-09-04 |
-
-### git 초기화가 필요한 것 (원격 없음)
-
-| 프로젝트 | 무엇 | 스택 | 주의 |
+| 로컬 디렉터리 | 공개 저장소 | 무엇 | 주요 기술 |
 |---|---|---|---|
-| **game** | Crypt Survivors — 뱀서라이크 오토배틀러 로그라이트. 시뮬레이션이 렌더러와 분리 | JS · PixiJS v8 · Vite · Vitest (226개) | `.gitignore`에 `.env` 추가 필요 |
-| **nihongo-app** | 니혼고 — 마스코트 기반 일본어 학습 PWA. SM-2 간격반복 + Gemini AI 튜터, 오디오 IndexedDB 오프라인 캐시 | React 19 · Vite · Firebase | `.env` 존재 (gitignore 확인됨 ✓) · `.agents/skills/`는 벤더링된 서드파티 |
-| **couple-app** | 커플이 다닌 곳을 카카오 지도에 기록·공유하는 모바일 PWA. 타임라인·기념일·편지·타임캡슐 | React 19 · Vite · Firebase | `.env` 존재 (gitignore 확인됨 ✓) |
-| **3d-map** | OpenStreetMap 실제 건물·도로를 압출해 만든 로우폴리 3D 월드를 치비 캐릭터로 걸어다니는 웹 앱 | React 19 · R3F · Rapier | `.gitignore`에 `.env` 추가 필요 |
-| **water-balloon-arcade** | 물풍선 대작전 — 크레이지아케이드류 픽셀 아케이드. 디자인 캔버스 프로토타입을 React로 이식, 게임 루프는 React 밖 순수 JS 엔진 | React 18 · Vite · Canvas2D | 2026-08-24 신규. 원본 핸드오프는 `크레이지아케이드 (1)/` (공개 대상 아님) |
+| `pig` | [pig-ma](https://github.com/gook-lab/pig-ma) | FigJam 스타일 React 무한 캔버스 라이브러리 | React · TypeScript · Konva · Zustand · Tiptap |
+| `saju` | [myeongri-seojae](https://github.com/gook-lab/myeongri-seojae) | 대운·오늘·궁합·신년 흐름을 로컬에서 계산하는 명리 서비스 | React 19 · TypeScript · Tailwind CSS · Zustand |
+| `stock-analysis` | [stock-pulse](https://github.com/gook-lab/stock-pulse) | 한국·미국 시황과 부동산 단지 정보를 보는 대시보드 | React · TypeScript · Vite · Node 프록시 · KIS SSE |
+| `rhythm-godot` | [rhythm-godot](https://github.com/gook-lab/rhythm-godot) | 오디오 클럭을 기준으로 판정하는 원버튼 리듬게임 | Godot · GDScript |
+| `dragon-game` | [dungeon-craft](https://github.com/gook-lab/dungeon-craft) | 렌더러와 전투 계산을 분리한 드래곤퀘스트풍 턴제 JRPG | JavaScript · PixiJS · Vite · Vitest |
+| `roomcast` | [room-simulator](https://github.com/gook-lab/room-simulator) | 평면도 모델에서 2D 편집 화면과 3D 공간을 만드는 배치 도구 | React · TypeScript · React Three Fiber |
+| `design-system/modul` | [modul](https://github.com/gook-lab/modul) | 토큰과 헤드리스 컴포넌트를 공유하는 React 디자인 시스템 | React · TypeScript · Radix · Storybook · Vitest |
+| `game` | [crypt-survivors](https://github.com/gook-lab/crypt-survivors) | 렌더러 없이 전투를 재현할 수 있는 불릿헤븐 로그라이트 | JavaScript · PixiJS · Vite · Vitest |
+| `nihongo-app` | [nihongo](https://github.com/gook-lab/nihongo) | 간격 반복과 AI 튜터를 결합한 일본어 학습 PWA | React · Vite · Firebase · IndexedDB |
+| `couple-app` | [couple-map](https://github.com/gook-lab/couple-map) | 함께 다닌 장소와 기록을 지도에 남기는 커플 PWA | React · Vite · Firebase · Kakao Maps · d3-geo |
+| `3d-map` | [osm-walker](https://github.com/gook-lab/osm-walker) | OpenStreetMap 데이터로 만든 3D 공간을 걷는 웹 앱 | React · React Three Fiber · Rapier |
+| `water-balloon-arcade` | [water-balloon-arcade](https://github.com/gook-lab/water-balloon-arcade) | React 밖 게임 루프로 동작하는 물풍선 아케이드 | React · Vite · Canvas 2D |
+
+저장소 이름과 로컬 디렉터리가 다른 이유는 [repo-names.md](repo-names.md)에
+기록했습니다. 위 12개 저장소는 `clone-all.sh`로 한 번에 받을 수 있습니다.
 
 ## 공개하지 않는 것들
 
@@ -53,7 +51,7 @@
 | **이력서 파일 정리 및 제안** | 개인정보 |
 | **dragon-game-unity-asset-backup** | 에셋 백업 사본 |
 
-## 문서량 (직접 작성분, 벤더링 제외)
+## 문서량 — 2026-08-22 스냅샷
 
 | 프로젝트 | md |
 |---|---|
@@ -70,5 +68,6 @@
 | rhythm-godot | 6 |
 | 3d-map · zombie-unity | 각 4 |
 
-합계 279개입니다. (전체 `.md`는 530개지만 251개가 벤더링입니다 —
+아래 수치는 2026-08-22에 측정한 기록입니다. 현재 저장소 수나 문서 상태를 나타내지
+않습니다. 당시 합계는 279개였습니다. (전체 `.md`는 530개지만 251개가 벤더링입니다 —
 `spire-godot/references/` 119개, `nihongo-app/.agents/skills/` 108개 등)

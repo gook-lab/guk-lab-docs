@@ -14,7 +14,8 @@ HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 WS="$HERE/workspace"
 
 REPOS=(pig-ma crypt-survivors dungeon-craft stock-pulse myeongri-seojae
-       nihongo couple-map osm-walker rhythm-godot)
+       nihongo couple-map osm-walker rhythm-godot room-simulator
+       water-balloon-arcade modul)
 
 mkdir -p "$WS"
 
