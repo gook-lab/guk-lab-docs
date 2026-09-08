@@ -13,7 +13,7 @@
 | 엔진명은 구분이 필요할 때만 | ARPG/JRPG 포크처럼 갈래가 있을 때만 붙임 |
 | 배포된 이름이 있으면 그것 | `pig` → `pig-ma` (npm 패키지명) |
 
-## 확정 — 2026-08-22
+## 확정 이름 — 2026-09-08 현재
 
 | 디렉토리 | → 레포명 | 근거 |
 |---|---|---|
@@ -26,7 +26,9 @@
 | `couple-app` | **couple-map** | 접미사 제거 + 핵심 기능(지도 기록) |
 | `3d-map` | **osm-walker** | OSM을 걸어다닌다는 것이 전부입니다. `3d-map`은 일반명사 |
 | `rhythm-godot` | **rhythm-godot** (유지) | Godot 리듬게임 구현 참고 자료로서 엔진명이 검색에 유리 |
-| `design-system` | **modul** | 제품명 사용. npm 스코프(`@modul/ui` · `@modul/tokens`)와 레포명을 맞췄습니다. 2026-09-04 확정 |
+| `roomcast` | **room-simulator** | 3D 배치 도구의 역할을 이름에서 바로 확인할 수 있습니다 |
+| `water-balloon-arcade` | **water-balloon-arcade** (유지) | 제품명과 저장소 이름이 이미 일치합니다 |
+| `design-system/modul` | **modul** | 제품명과 npm 패키지 스코프(`@gook-lab/*`)를 맞췄습니다 |
 
 ### 히스토리 정리 후 (Unity 3종)
 
@@ -52,7 +54,7 @@
 | `pig-ma` | **MIT** | 이미 npm에 MIT로 배포됐습니다. 나간 버전의 MIT는 소급 철회가 안 되고, 라이브러리는 애초에 쓰라고 만든 것이기 때문입니다 |
 | `modul` | **MIT** | npm 배포를 전제로 한 컴포넌트 라이브러리입니다. `pig-ma` 와 같은 사유 — 라이브러리는 쓰라고 만든 것입니다 |
 | `guk-lab-docs` | **CC BY-NC 4.0** | 글입니다. 공유되되 되팔리지 않게 |
-| 나머지 8개 | **Source-available (all rights reserved)** | 포트폴리오로 보이되 가져다 쓰지는 못하게 |
+| 나머지 공개 프로젝트 | **각 저장소의 LICENSE** | 공개 범위와 재사용 조건은 저장소별 문서를 기준으로 확인 |
 
 > 공개 레포에서 **다운로드를 기술적으로 막을 수는 없습니다.** `allow_forking=false`는
 > 조직 소유 private 레포에서만 되고(2026-08-22 API 실측), public은 clone · ZIP ·

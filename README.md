@@ -1,5 +1,7 @@
 # guk-lab-docs
 
+[한국어](README.md) · [English](README.en.md)
+
 토이 프로젝트 15개를 만들면서 **자꾸 다시 발명하게 되던 패턴들**을 모아둔 곳입니다.
 
 프로젝트 문서를 여기로 옮겨오지는 않습니다. 각 프로젝트의 `README.md`·`CLAUDE.md`·
@@ -61,9 +63,9 @@
 
 | 문서 | 한 줄 |
 |---|---|
-| [projects](projects.md) | 토이 프로젝트 15개 — 무엇인지, 어디 있는지, 공개 가능한지 |
+| [projects](projects.md) | 로컬 프로젝트와 공개 저장소 — 이름·역할·공개 여부 |
 | [repo-names](repo-names.md) | GitHub 레포 이름과 라이선스 배치 |
-| `clone-all.sh` | 프로젝트 9개를 `workspace/`로 클론 (gitignore 대상) |
+| `clone-all.sh` | 공개 코드 저장소 12개를 `workspace/`로 클론 (gitignore 대상) |
 
 ## 이 저장소의 규칙
 
