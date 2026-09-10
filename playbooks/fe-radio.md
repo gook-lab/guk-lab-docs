@@ -127,6 +127,10 @@ RADIO의 O가 말하는 "추측성 최적화 금지"를 토이에서는
 - **정답이 밖에 있으면 그것과 대조합니다** — 절기 계산은 KASI 공식 값과,
   포팅은 원본 JS와 골든 코퍼스 diff로입니다. "내 구현 둘이 서로 맞다"와
   "공식 기관과 맞다"는 다른 문장이기 때문입니다.
+- **운영 오류는 재현 테스트로 전환합니다** — Sentry Trace를 GitHub Issue와
+  Given–When–Then 시나리오로 정리하고, Vitest·Testing Library 또는 Playwright에서
+  수정 전 실패와 수정 후 통과를 확인합니다.
+  ([incident-to-regression](incident-to-regression.md))
 
 ## 깊이는 작업 크기에 맞춥니다
 

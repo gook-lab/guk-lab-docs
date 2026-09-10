@@ -26,9 +26,11 @@
 | [doc-screenshots](skills/doc-screenshots/SKILL.md) | README 스크린샷을 테스트와 같은 도구로 촬영 | 9개 중 그림이 있는 레포가 1개뿐이던 상황 |
 | [doc-diagrams](skills/doc-diagrams/SKILL.md) | 아키텍처 다이어그램을 pig-ma의 Mermaid import로 작도·캡처 | 4개 레포 이벤트 플로우 도해를 도그푸딩으로 해결 |
 | [portfolio-writing](skills/portfolio-writing/SKILL.md) | 실제 근거에서 프로젝트 소개·문제 해결·회고를 쓰고 README·Notion·이력서·웹 문구를 매체별로 변환 | 포트폴리오 전면 수정에서 기능 나열과 추상적인 에이전트 문장을 반복 교정한 경험 |
+| [incident-reproduction](skills/incident-reproduction/SKILL.md) | 오류 로그와 Trace를 Vitest·Testing Library 또는 Playwright 재현 시나리오로 변환하고 수정 전후를 검증 | Sentry 오류를 이슈·재현 테스트·수정 PR로 연결하기 위한 자동화 설계 |
 
-여섯 모두 **실제로 겪은 문제**에서 나왔습니다. 겪지 않은 문제로 스킬을 만들면
-아무도 안 썼습니다.
+앞선 여섯 스킬은 **실제로 겪은 문제**에서 나왔습니다. `incident-reproduction`은
+Sentry 연동과 staging 환경이 준비된 뒤 단계별로 적용할 설계안이며, 현재 자동화할
+수 있는 범위와 WebGL 환경 때문에 보류할 범위를 함께 기록했습니다.
 
 ---
 
