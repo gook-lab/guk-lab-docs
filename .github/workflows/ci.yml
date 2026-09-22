@@ -31,7 +31,7 @@ jobs:
 
       - name: 프로젝트 manifest와 운영 검사 확인
         run: |
-          node --test scripts/project-control.test.mjs
+          node --test scripts/project-control.test.mjs harness/skills/audit-docs/check-docs.test.mjs
           node scripts/project-control.mjs validate
           node scripts/project-control.mjs fleet
           node scripts/project-control.mjs sync

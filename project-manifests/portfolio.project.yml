@@ -5,6 +5,7 @@
   "repository": "https://github.com/gook-lab/portfolio",
   "demo": "https://seonggukyoon-portfolio.vercel.app",
   "status": "active",
+  "kind": "node",
   "visibility": "private",
   "catalog": false,
   "stack": ["Next.js", "React", "TypeScript", "Vitest", "Playwright"],
@@ -16,5 +17,6 @@
   },
   "docs": ["README.md", "AGENTS.md", "HANDOFF.md"],
   "metadataSources": ["README.md", "HANDOFF.md"],
+  "portfolioSources": ["src/content/ko.ts", "src/content/en.ts"],
   "portfolio": { "featured": false }
 }

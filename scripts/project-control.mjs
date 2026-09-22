@@ -43,6 +43,12 @@ function validateManifests(manifests) {
     if (!Array.isArray(manifest.stack) || manifest.stack.length === 0) errors.push(`${at}: stack은 한 개 이상의 항목이 필요합니다.`);
     if (!Array.isArray(manifest.docs)) errors.push(`${at}: docs는 배열이어야 합니다.`);
     if (typeof manifest.commands !== "object" || Array.isArray(manifest.commands)) errors.push(`${at}: commands는 객체여야 합니다.`);
+    for (const [name, config] of Object.entries(manifest.commands ?? {})) {
+      if (typeof config === "string") continue;
+      if (!config || typeof config.run !== "string" || typeof config.requiredPath !== "string") {
+        errors.push(`${at}: commands.${name}은 문자열 또는 run·requiredPath 객체여야 합니다.`);
+      }
+    }
   }
   return errors;
 }
@@ -69,19 +75,27 @@ function addCheck(checks, label, ok, detail, weight = 1) {
   checks.push({ label, status: ok ? "PASS" : "WARN", detail, weight });
 }
 
+function commandText(config) {
+  return typeof config === "string" ? config : config.run;
+}
+
 function audit(manifest) {
   const project = projectRoot(manifest);
   const checks = [];
   addCheck(checks, "로컬 경로", existsSync(project), relative(ROOT, project), 2);
   if (!existsSync(project)) return summarize(manifest, checks);
 
-  const pkg = readPackage(project);
-  addCheck(checks, "package.json", Boolean(pkg), pkg ? pkg.name ?? "이름 없음" : "파일 없음", 2);
+  const kind = manifest.kind ?? "node";
+  const pkg = kind === "node" ? readPackage(project) : null;
+  if (kind === "node") addCheck(checks, "package.json", Boolean(pkg), pkg ? pkg.name ?? "이름 없음" : "파일 없음", 2);
   const scripts = pkg?.scripts ?? {};
-  for (const [name, command] of Object.entries(manifest.commands ?? {})) {
+  for (const [name, commandConfig] of Object.entries(manifest.commands ?? {})) {
+    const command = commandText(commandConfig);
     const scriptName = command.match(/^npm run ([^ ]+)/)?.[1]
       ?? command.match(/^(?:pnpm|yarn) (?:run )?([^ ]+)/)?.[1];
-    addCheck(checks, `명령 · ${name}`, !scriptName || Boolean(scripts[scriptName]), command, name === "test" || name === "build" ? 2 : 1);
+    const requiredPath = typeof commandConfig === "object" ? commandConfig.requiredPath : null;
+    const valid = scriptName ? Boolean(scripts[scriptName]) : requiredPath ? existsSync(join(project, requiredPath)) : false;
+    addCheck(checks, `명령 · ${name}`, valid, requiredPath ? `${command} · ${requiredPath}` : command, name === "test" || name === "build" ? 2 : 1);
   }
 
   for (const doc of manifest.docs ?? []) {
@@ -141,7 +155,7 @@ function contextPack(manifest) {
     `${manifest.demo ? `- 데모: ${manifest.demo}\n` : ""}- 기술: ${(manifest.stack ?? []).join(" · ")}\n` +
     `- 현재 브랜치: ${git(project, ["branch", "--show-current"]) || "확인 불가"}\n\n` +
     `## 먼저 읽을 문서\n\n${(manifest.docs ?? []).map((doc) => `- \`${doc}\``).join("\n")}\n\n` +
-    `## 검증 명령\n\n${Object.entries(manifest.commands ?? {}).map(([name, command]) => `- ${name}: \`${command}\``).join("\n")}\n\n` +
+    `## 검증 명령\n\n${Object.entries(manifest.commands ?? {}).map(([name, command]) => `- ${name}: \`${commandText(command)}\``).join("\n")}\n\n` +
     `## 현재 진단\n\n- 점수: ${result.score}\n${result.checks.filter((c) => c.status === "WARN").map((c) => `- 확인 필요: ${c.label} — ${c.detail}`).join("\n") || "- 확인이 필요한 항목이 없습니다."}\n\n` +
     `## 패키지 스크립트\n\n${Object.keys(pkg?.scripts ?? {}).map((name) => `- \`${name}\``).join("\n") || "- package.json 없음"}\n`;
 }
@@ -150,24 +164,28 @@ function syncReport(manifests) {
   const projectsDoc = readFileSync(join(ROOT, "projects.md"), "utf8");
   const portfolioManifest = manifests.find((item) => item.id === "portfolio");
   const portfolioRoot = portfolioManifest ? projectRoot(portfolioManifest) : null;
-  const portfolioKo = portfolioRoot && existsSync(join(portfolioRoot, "src/content/ko.ts")) ? readFileSync(join(portfolioRoot, "src/content/ko.ts"), "utf8") : "";
-  const portfolioEn = portfolioRoot && existsSync(join(portfolioRoot, "src/content/en.ts")) ? readFileSync(join(portfolioRoot, "src/content/en.ts"), "utf8") : "";
+  const portfolioDocuments = portfolioRoot
+    ? (portfolioManifest.portfolioSources ?? [])
+        .filter((file) => existsSync(join(portfolioRoot, file)))
+        .map((file) => readFileSync(join(portfolioRoot, file), "utf8"))
+    : [];
   const lines = ["# 프로젝트 정보 동기화 검사", "", `생성 시각: ${new Date().toISOString()}`, "", "저장소 링크는 프로젝트 지도, 데모 링크는 각 프로젝트 문서, 포트폴리오 링크는 한·영 콘텐츠와 비교했습니다.", "", "| 프로젝트 | 저장소 | 데모 | 포트폴리오 | 결과 |", "|---|---|---|---|---|"];
   for (const manifest of manifests) {
+    const localProjectExists = existsSync(projectRoot(manifest));
     const metadata = (manifest.metadataSources ?? ["README.md"])
       .filter((file) => existsSync(join(projectRoot(manifest), file)))
       .map((file) => readFileSync(join(projectRoot(manifest), file), "utf8"))
       .join("\n");
     const repoOk = manifest.catalog === false || projectsDoc.includes(manifest.repository);
-    const demoOk = !manifest.demo || metadata.includes(manifest.demo);
-    const portfolioOk = !manifest.portfolio?.featured || (portfolioKo.includes(manifest.repository) && portfolioEn.includes(manifest.repository));
-    const notes = [!repoOk && "projects.md 저장소 링크 누락", !demoOk && "프로젝트 메타데이터 문서에 데모 링크 누락", !portfolioOk && "포트폴리오 한·영 링크 누락"].filter(Boolean);
-    lines.push(`| ${manifest.name} | ${repoOk ? "PASS" : "WARN"} | ${demoOk ? "PASS" : "WARN"} | ${portfolioOk ? "PASS" : "WARN"} | ${notes.join(", ") || "일치"} |`);
+    const demoState = !manifest.demo ? "PASS" : !localProjectExists ? "SKIP" : metadata.includes(manifest.demo) ? "PASS" : "WARN";
+    const portfolioState = !manifest.portfolio?.featured ? "PASS" : portfolioDocuments.length === 0 ? "SKIP" : portfolioDocuments.every((document) => document.includes(manifest.repository)) ? "PASS" : "WARN";
+    const notes = [!repoOk && "projects.md 저장소 링크 누락", demoState === "WARN" && "프로젝트 메타데이터 문서에 데모 링크 누락", portfolioState === "WARN" && "포트폴리오 한·영 링크 누락"].filter(Boolean);
+    lines.push(`| ${manifest.name} | ${repoOk ? "PASS" : "WARN"} | ${demoState} | ${portfolioState} | ${notes.join(", ") || (demoState === "SKIP" || portfolioState === "SKIP" ? "로컬 저장소가 없어 일부 검사 생략" : "일치")} |`);
   }
   mkdirSync(REPORT_DIR, { recursive: true });
   const output = `${lines.join("\n")}\n`;
   writeFileSync(join(REPORT_DIR, "portfolio-sync.md"), output);
-  return output;
+  return { output, warnings: lines.filter((line) => line.includes("WARN")).length };
 }
 
 function verify(manifest) {
@@ -175,7 +193,8 @@ function verify(manifest) {
   if (!existsSync(project)) throw new Error(`로컬 프로젝트가 없습니다: ${project}`);
   const startedAt = new Date().toISOString();
   const results = [];
-  for (const [name, command] of Object.entries(manifest.commands ?? {})) {
+  for (const [name, commandConfig] of Object.entries(manifest.commands ?? {})) {
+    const command = commandText(commandConfig);
     const start = Date.now();
     const run = spawnSync(command, { cwd: project, shell: true, encoding: "utf8", maxBuffer: 16 * 1024 * 1024 });
     const output = `${run.stdout ?? ""}\n${run.stderr ?? ""}`.trim();
@@ -193,19 +212,25 @@ async function checkLinks(manifests) {
     ...(manifest.visibility === "private" ? [] : [{ project: manifest.id, kind: "repository", url: manifest.repository }]),
     ...(manifest.demo ? [{ project: manifest.id, kind: "demo", url: manifest.demo }] : []),
   ]);
-  const results = [];
-  for (const target of targets) {
-    const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), 10_000);
-    try {
-      const response = await fetch(target.url, { method: "GET", redirect: "follow", signal: controller.signal, headers: { "user-agent": "guk-lab-project-control/1.0" } });
-      results.push({ ...target, status: response.status, ok: response.ok, finalUrl: response.url });
-    } catch (error) {
-      results.push({ ...target, status: null, ok: false, error: error.name });
-    } finally {
-      clearTimeout(timer);
+  const results = new Array(targets.length);
+  let nextIndex = 0;
+  async function worker() {
+    while (nextIndex < targets.length) {
+      const index = nextIndex++;
+      const target = targets[index];
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 10_000);
+      try {
+        const response = await fetch(target.url, { method: "GET", redirect: "follow", signal: controller.signal, headers: { "user-agent": "guk-lab-project-control/1.0" } });
+        results[index] = { ...target, status: response.status, ok: response.ok, finalUrl: response.url };
+      } catch (error) {
+        results[index] = { ...target, status: null, ok: false, error: error.name };
+      } finally {
+        clearTimeout(timer);
+      }
     }
   }
+  await Promise.all(Array.from({ length: Math.min(5, targets.length) }, () => worker()));
   mkdirSync(REPORT_DIR, { recursive: true });
   writeFileSync(join(REPORT_DIR, "external-links.json"), `${JSON.stringify({ checkedAt: new Date().toISOString(), results }, null, 2)}\n`);
   return results;
@@ -240,7 +265,11 @@ try {
   else if (command === "links") console.log(JSON.stringify(await checkLinks(manifests), null, 2));
   else if (command === "fleet") { const results = manifests.map(audit); writeReports(results); console.log(markdownReport(results)); }
   else if (command === "context") console.log(contextPack(findManifest(manifests, id)));
-  else if (command === "sync") console.log(syncReport(manifests));
+  else if (command === "sync") {
+    const result = syncReport(manifests);
+    console.log(result.output);
+    if (result.warnings > 0 && !process.argv.includes("--report-only")) process.exitCode = 1;
+  }
   else if (command === "incident") console.log(incidentTemplate(findManifest(manifests, id), rest.join(" ") || "오류 재현"));
   else if (command === "readiness") console.log(readiness(findManifest(manifests, id)));
   else {
