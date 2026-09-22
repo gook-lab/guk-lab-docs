@@ -1,0 +1,23 @@
+{
+  "project": "water-balloon-arcade",
+  "startedAt": "2026-09-21T07:43:38.322Z",
+  "finishedAt": "2026-09-21T07:43:40.557Z",
+  "results": [
+    {
+      "name": "test",
+      "command": "npm run test",
+      "status": "PASS",
+      "exitCode": 0,
+      "durationMs": 1156,
+      "outputTail": "> water-balloon-arcade@0.1.0 test\n> vitest run\n\n\n RUN  v4.1.11 /Users/kyb-ontact/sonix/toy/water-balloon-arcade\n\n\n Test Files  6 passed (6)\n      Tests  54 passed (54)\n   Start at  16:43:39\n   Duration  377ms (transform 329ms, setup 0ms, import 452ms, tests 181ms, environment 0ms)\n\n\n4:43:39 PM [vite] warning: `esbuild` option was specified by \"vite:react-babel\" plugin. This option is deprecated, please use `oxc` instead.\n4:43:39 PM [vite] warning: `optimizeDeps.esbuildOptions` option was specified by \"vite:react-babel\" plugin. This option is deprecated, please use `optimizeDeps.rolldownOptions` instead.\nBoth esbuild and oxc options were set. oxc options will be used and esbuild options will be ignored. The following esbuild options were set: `{ jsx: 'automatic', jsxImportSource: undefined }`"
+    },
+    {
+      "name": "build",
+      "command": "npm run build",
+      "status": "PASS",
+      "exitCode": 0,
+      "durationMs": 1078,
+      "outputTail": "> water-balloon-arcade@0.1.0 build\n> vite build\n\nvite v5.4.21 building for production...\ntransforming...\n✓ 49 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                      0.60 kB │ gzip:  0.40 kB\ndist/assets/neodgm-D-3Py31k.woff2   44.62 kB\ndist/assets/neodgm-D99SKBE2.woff   147.91 kB\ndist/assets/index-Cd1dSC1F.css       2.85 kB │ gzip:  1.09 kB\ndist/assets/index-BUaq_j8S.js      192.37 kB │ gzip: 63.50 kB\n✓ built in 564ms"
+    }
+  ]
+}

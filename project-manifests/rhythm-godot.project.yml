@@ -1,0 +1,12 @@
+{
+  "id": "rhythm-godot",
+  "name": "Rhythm Godot",
+  "localPath": "../rhythm-godot",
+  "repository": "https://github.com/gook-lab/rhythm-godot",
+  "status": "maintenance",
+  "stack": ["Godot", "GDScript", "Python"],
+  "commands": { "test": "bash tools/run_all_tests.sh" },
+  "docs": ["README.md", "project.godot"],
+  "metadataSources": ["README.md"],
+  "portfolio": { "featured": false }
+}

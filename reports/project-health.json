@@ -1,0 +1,1052 @@
+{
+  "generatedAt": "2026-09-21T07:44:51.624Z",
+  "projects": [
+    {
+      "id": "couple-map",
+      "name": "Couple Map",
+      "score": 100,
+      "checks": [
+        {
+          "label": "로컬 경로",
+          "status": "PASS",
+          "detail": "../couple-app",
+          "weight": 2
+        },
+        {
+          "label": "package.json",
+          "status": "PASS",
+          "detail": "couple-app",
+          "weight": 2
+        },
+        {
+          "label": "명령 · lint",
+          "status": "PASS",
+          "detail": "npm run lint",
+          "weight": 1
+        },
+        {
+          "label": "명령 · test",
+          "status": "PASS",
+          "detail": "npm run test",
+          "weight": 2
+        },
+        {
+          "label": "명령 · build",
+          "status": "PASS",
+          "detail": "npm run build",
+          "weight": 2
+        },
+        {
+          "label": "문서 · README.md",
+          "status": "PASS",
+          "detail": "README.md",
+          "weight": 1
+        },
+        {
+          "label": "문서 · CLAUDE.md",
+          "status": "PASS",
+          "detail": "CLAUDE.md",
+          "weight": 1
+        },
+        {
+          "label": "문서 · docs",
+          "status": "PASS",
+          "detail": "docs",
+          "weight": 1
+        },
+        {
+          "label": "CI",
+          "status": "PASS",
+          "detail": ".github/workflows",
+          "weight": 1
+        },
+        {
+          "label": "라이선스",
+          "status": "PASS",
+          "detail": "LICENSE 또는 LICENSE.md",
+          "weight": 1
+        },
+        {
+          "label": "저장소 URL",
+          "status": "PASS",
+          "detail": "https://github.com/gook-lab/couple-map",
+          "weight": 2
+        },
+        {
+          "label": "Git 상태",
+          "status": "PASS",
+          "detail": "main · clean",
+          "weight": 1
+        }
+      ],
+      "committedAt": "2026-09-10T10:10:25+09:00",
+      "ageDays": 11
+    },
+    {
+      "id": "crypt-survivors",
+      "name": "Crypt Survivors",
+      "score": 100,
+      "checks": [
+        {
+          "label": "로컬 경로",
+          "status": "PASS",
+          "detail": "../game",
+          "weight": 2
+        },
+        {
+          "label": "package.json",
+          "status": "PASS",
+          "detail": "vs-clone",
+          "weight": 2
+        },
+        {
+          "label": "명령 · lint",
+          "status": "PASS",
+          "detail": "npm run lint",
+          "weight": 1
+        },
+        {
+          "label": "명령 · test",
+          "status": "PASS",
+          "detail": "npm run test",
+          "weight": 2
+        },
+        {
+          "label": "명령 · build",
+          "status": "PASS",
+          "detail": "npm run build",
+          "weight": 2
+        },
+        {
+          "label": "문서 · README.md",
+          "status": "PASS",
+          "detail": "README.md",
+          "weight": 1
+        },
+        {
+          "label": "문서 · CLAUDE.md",
+          "status": "PASS",
+          "detail": "CLAUDE.md",
+          "weight": 1
+        },
+        {
+          "label": "문서 · docs",
+          "status": "PASS",
+          "detail": "docs",
+          "weight": 1
+        },
+        {
+          "label": "CI",
+          "status": "PASS",
+          "detail": ".github/workflows",
+          "weight": 1
+        },
+        {
+          "label": "라이선스",
+          "status": "PASS",
+          "detail": "LICENSE 또는 LICENSE.md",
+          "weight": 1
+        },
+        {
+          "label": "저장소 URL",
+          "status": "PASS",
+          "detail": "https://github.com/gook-lab/crypt-survivors",
+          "weight": 2
+        },
+        {
+          "label": "Git 상태",
+          "status": "PASS",
+          "detail": "main · clean",
+          "weight": 1
+        }
+      ],
+      "committedAt": "2026-09-15T09:06:40+09:00",
+      "ageDays": 6
+    },
+    {
+      "id": "dungeon-craft",
+      "name": "Dungeon Craft",
+      "score": 100,
+      "checks": [
+        {
+          "label": "로컬 경로",
+          "status": "PASS",
+          "detail": "../dragon-game",
+          "weight": 2
+        },
+        {
+          "label": "package.json",
+          "status": "PASS",
+          "detail": "dragon-crypt",
+          "weight": 2
+        },
+        {
+          "label": "명령 · lint",
+          "status": "PASS",
+          "detail": "npm run lint",
+          "weight": 1
+        },
+        {
+          "label": "명령 · test",
+          "status": "PASS",
+          "detail": "npm run test",
+          "weight": 2
+        },
+        {
+          "label": "명령 · build",
+          "status": "PASS",
+          "detail": "npm run build",
+          "weight": 2
+        },
+        {
+          "label": "문서 · README.md",
+          "status": "PASS",
+          "detail": "README.md",
+          "weight": 1
+        },
+        {
+          "label": "문서 · CLAUDE.md",
+          "status": "PASS",
+          "detail": "CLAUDE.md",
+          "weight": 1
+        },
+        {
+          "label": "문서 · docs",
+          "status": "PASS",
+          "detail": "docs",
+          "weight": 1
+        },
+        {
+          "label": "CI",
+          "status": "PASS",
+          "detail": ".github/workflows",
+          "weight": 1
+        },
+        {
+          "label": "라이선스",
+          "status": "PASS",
+          "detail": "LICENSE 또는 LICENSE.md",
+          "weight": 1
+        },
+        {
+          "label": "저장소 URL",
+          "status": "PASS",
+          "detail": "https://github.com/gook-lab/dungeon-craft",
+          "weight": 2
+        },
+        {
+          "label": "Git 상태",
+          "status": "PASS",
+          "detail": "main · clean",
+          "weight": 1
+        }
+      ],
+      "committedAt": "2026-09-15T09:06:54+09:00",
+      "ageDays": 6
+    },
+    {
+      "id": "modul",
+      "name": "MODUL",
+      "score": 100,
+      "checks": [
+        {
+          "label": "로컬 경로",
+          "status": "PASS",
+          "detail": "../design-system/modul",
+          "weight": 2
+        },
+        {
+          "label": "package.json",
+          "status": "PASS",
+          "detail": "modul",
+          "weight": 2
+        },
+        {
+          "label": "명령 · lint",
+          "status": "PASS",
+          "detail": "pnpm lint",
+          "weight": 1
+        },
+        {
+          "label": "명령 · typecheck",
+          "status": "PASS",
+          "detail": "pnpm typecheck",
+          "weight": 1
+        },
+        {
+          "label": "명령 · test",
+          "status": "PASS",
+          "detail": "pnpm test",
+          "weight": 2
+        },
+        {
+          "label": "명령 · build",
+          "status": "PASS",
+          "detail": "pnpm build",
+          "weight": 2
+        },
+        {
+          "label": "문서 · README.md",
+          "status": "PASS",
+          "detail": "README.md",
+          "weight": 1
+        },
+        {
+          "label": "문서 · docs",
+          "status": "PASS",
+          "detail": "docs",
+          "weight": 1
+        },
+        {
+          "label": "CI",
+          "status": "PASS",
+          "detail": ".github/workflows",
+          "weight": 1
+        },
+        {
+          "label": "라이선스",
+          "status": "PASS",
+          "detail": "LICENSE 또는 LICENSE.md",
+          "weight": 1
+        },
+        {
+          "label": "저장소 URL",
+          "status": "PASS",
+          "detail": "https://github.com/gook-lab/modul",
+          "weight": 2
+        },
+        {
+          "label": "Git 상태",
+          "status": "PASS",
+          "detail": "docs/add-quality-status · clean",
+          "weight": 1
+        },
+        {
+          "label": "데모 URL",
+          "status": "PASS",
+          "detail": "https://modul-storybook.vercel.app",
+          "weight": 1
+        }
+      ],
+      "committedAt": "2026-09-09T08:37:13+09:00",
+      "ageDays": 12
+    },
+    {
+      "id": "myeongri-seojae",
+      "name": "명리서재",
+      "score": 100,
+      "checks": [
+        {
+          "label": "로컬 경로",
+          "status": "PASS",
+          "detail": "../myeongri-seojae",
+          "weight": 2
+        },
+        {
+          "label": "package.json",
+          "status": "PASS",
+          "detail": "myeongri-seojae",
+          "weight": 2
+        },
+        {
+          "label": "명령 · lint",
+          "status": "PASS",
+          "detail": "pnpm lint",
+          "weight": 1
+        },
+        {
+          "label": "명령 · typecheck",
+          "status": "PASS",
+          "detail": "pnpm typecheck",
+          "weight": 1
+        },
+        {
+          "label": "명령 · test",
+          "status": "PASS",
+          "detail": "pnpm test",
+          "weight": 2
+        },
+        {
+          "label": "명령 · build",
+          "status": "PASS",
+          "detail": "pnpm build",
+          "weight": 2
+        },
+        {
+          "label": "문서 · README.md",
+          "status": "PASS",
+          "detail": "README.md",
+          "weight": 1
+        },
+        {
+          "label": "문서 · docs",
+          "status": "PASS",
+          "detail": "docs",
+          "weight": 1
+        },
+        {
+          "label": "CI",
+          "status": "PASS",
+          "detail": ".github/workflows",
+          "weight": 1
+        },
+        {
+          "label": "라이선스",
+          "status": "PASS",
+          "detail": "LICENSE 또는 LICENSE.md",
+          "weight": 1
+        },
+        {
+          "label": "저장소 URL",
+          "status": "PASS",
+          "detail": "https://github.com/gook-lab/myeongri-seojae",
+          "weight": 2
+        },
+        {
+          "label": "Git 상태",
+          "status": "PASS",
+          "detail": "main · clean",
+          "weight": 1
+        },
+        {
+          "label": "데모 URL",
+          "status": "PASS",
+          "detail": "https://myeongri-seojae.vercel.app",
+          "weight": 1
+        }
+      ],
+      "committedAt": "2026-09-15T09:08:50+09:00",
+      "ageDays": 6
+    },
+    {
+      "id": "nihongo",
+      "name": "Nihongo",
+      "score": 100,
+      "checks": [
+        {
+          "label": "로컬 경로",
+          "status": "PASS",
+          "detail": "../nihongo-app",
+          "weight": 2
+        },
+        {
+          "label": "package.json",
+          "status": "PASS",
+          "detail": "nihongo-app",
+          "weight": 2
+        },
+        {
+          "label": "명령 · lint",
+          "status": "PASS",
+          "detail": "npm run lint",
+          "weight": 1
+        },
+        {
+          "label": "명령 · test",
+          "status": "PASS",
+          "detail": "npm run test",
+          "weight": 2
+        },
+        {
+          "label": "명령 · build",
+          "status": "PASS",
+          "detail": "npm run build",
+          "weight": 2
+        },
+        {
+          "label": "문서 · README.md",
+          "status": "PASS",
+          "detail": "README.md",
+          "weight": 1
+        },
+        {
+          "label": "문서 · CLAUDE.md",
+          "status": "PASS",
+          "detail": "CLAUDE.md",
+          "weight": 1
+        },
+        {
+          "label": "문서 · docs",
+          "status": "PASS",
+          "detail": "docs",
+          "weight": 1
+        },
+        {
+          "label": "CI",
+          "status": "PASS",
+          "detail": ".github/workflows",
+          "weight": 1
+        },
+        {
+          "label": "라이선스",
+          "status": "PASS",
+          "detail": "LICENSE 또는 LICENSE.md",
+          "weight": 1
+        },
+        {
+          "label": "저장소 URL",
+          "status": "PASS",
+          "detail": "https://github.com/gook-lab/nihongo",
+          "weight": 2
+        },
+        {
+          "label": "Git 상태",
+          "status": "PASS",
+          "detail": "main · clean",
+          "weight": 1
+        },
+        {
+          "label": "데모 URL",
+          "status": "PASS",
+          "detail": "https://nihan-go-test.netlify.app/",
+          "weight": 1
+        }
+      ],
+      "committedAt": "2026-09-15T09:06:45+09:00",
+      "ageDays": 6
+    },
+    {
+      "id": "osm-walker",
+      "name": "OSM Walker",
+      "score": 100,
+      "checks": [
+        {
+          "label": "로컬 경로",
+          "status": "PASS",
+          "detail": "../3d-map",
+          "weight": 2
+        },
+        {
+          "label": "package.json",
+          "status": "PASS",
+          "detail": "3d-map",
+          "weight": 2
+        },
+        {
+          "label": "명령 · lint",
+          "status": "PASS",
+          "detail": "npm run lint",
+          "weight": 1
+        },
+        {
+          "label": "명령 · test",
+          "status": "PASS",
+          "detail": "npm run test -- --run",
+          "weight": 2
+        },
+        {
+          "label": "명령 · build",
+          "status": "PASS",
+          "detail": "npm run build",
+          "weight": 2
+        },
+        {
+          "label": "문서 · README.md",
+          "status": "PASS",
+          "detail": "README.md",
+          "weight": 1
+        },
+        {
+          "label": "문서 · CLAUDE.md",
+          "status": "PASS",
+          "detail": "CLAUDE.md",
+          "weight": 1
+        },
+        {
+          "label": "문서 · docs",
+          "status": "PASS",
+          "detail": "docs",
+          "weight": 1
+        },
+        {
+          "label": "CI",
+          "status": "PASS",
+          "detail": ".github/workflows",
+          "weight": 1
+        },
+        {
+          "label": "라이선스",
+          "status": "PASS",
+          "detail": "LICENSE 또는 LICENSE.md",
+          "weight": 1
+        },
+        {
+          "label": "저장소 URL",
+          "status": "PASS",
+          "detail": "https://github.com/gook-lab/osm-walker",
+          "weight": 2
+        },
+        {
+          "label": "Git 상태",
+          "status": "PASS",
+          "detail": "main · clean",
+          "weight": 1
+        }
+      ],
+      "committedAt": "2026-09-10T11:26:03+09:00",
+      "ageDays": 11
+    },
+    {
+      "id": "pig-ma",
+      "name": "pig-ma",
+      "score": 100,
+      "checks": [
+        {
+          "label": "로컬 경로",
+          "status": "PASS",
+          "detail": "../pig",
+          "weight": 2
+        },
+        {
+          "label": "package.json",
+          "status": "PASS",
+          "detail": "pig-ma",
+          "weight": 2
+        },
+        {
+          "label": "명령 · lint",
+          "status": "PASS",
+          "detail": "npm run lint",
+          "weight": 1
+        },
+        {
+          "label": "명령 · typecheck",
+          "status": "PASS",
+          "detail": "npm run typecheck",
+          "weight": 1
+        },
+        {
+          "label": "명령 · test",
+          "status": "PASS",
+          "detail": "npm run test",
+          "weight": 2
+        },
+        {
+          "label": "명령 · build",
+          "status": "PASS",
+          "detail": "npm run build",
+          "weight": 2
+        },
+        {
+          "label": "문서 · README.md",
+          "status": "PASS",
+          "detail": "README.md",
+          "weight": 1
+        },
+        {
+          "label": "문서 · CLAUDE.md",
+          "status": "PASS",
+          "detail": "CLAUDE.md",
+          "weight": 1
+        },
+        {
+          "label": "문서 · docs",
+          "status": "PASS",
+          "detail": "docs",
+          "weight": 1
+        },
+        {
+          "label": "CI",
+          "status": "PASS",
+          "detail": ".github/workflows",
+          "weight": 1
+        },
+        {
+          "label": "라이선스",
+          "status": "PASS",
+          "detail": "LICENSE 또는 LICENSE.md",
+          "weight": 1
+        },
+        {
+          "label": "저장소 URL",
+          "status": "PASS",
+          "detail": "https://github.com/gook-lab/pig-ma",
+          "weight": 2
+        },
+        {
+          "label": "Git 상태",
+          "status": "PASS",
+          "detail": "main · clean",
+          "weight": 1
+        },
+        {
+          "label": "데모 URL",
+          "status": "PASS",
+          "detail": "https://pig-ma.vercel.app",
+          "weight": 1
+        }
+      ],
+      "committedAt": "2026-09-15T09:06:59+09:00",
+      "ageDays": 6
+    },
+    {
+      "id": "portfolio",
+      "name": "Portfolio",
+      "score": 89,
+      "checks": [
+        {
+          "label": "로컬 경로",
+          "status": "PASS",
+          "detail": "../이력서 파일 정리 및 제안/portfolio",
+          "weight": 2
+        },
+        {
+          "label": "package.json",
+          "status": "PASS",
+          "detail": "seongguk-pixel-portfolio",
+          "weight": 2
+        },
+        {
+          "label": "명령 · lint",
+          "status": "PASS",
+          "detail": "pnpm lint",
+          "weight": 1
+        },
+        {
+          "label": "명령 · typecheck",
+          "status": "PASS",
+          "detail": "pnpm typecheck",
+          "weight": 1
+        },
+        {
+          "label": "명령 · test",
+          "status": "PASS",
+          "detail": "pnpm test",
+          "weight": 2
+        },
+        {
+          "label": "명령 · build",
+          "status": "PASS",
+          "detail": "pnpm build",
+          "weight": 2
+        },
+        {
+          "label": "문서 · README.md",
+          "status": "PASS",
+          "detail": "README.md",
+          "weight": 1
+        },
+        {
+          "label": "문서 · AGENTS.md",
+          "status": "PASS",
+          "detail": "AGENTS.md",
+          "weight": 1
+        },
+        {
+          "label": "문서 · HANDOFF.md",
+          "status": "PASS",
+          "detail": "HANDOFF.md",
+          "weight": 1
+        },
+        {
+          "label": "CI",
+          "status": "WARN",
+          "detail": ".github/workflows",
+          "weight": 1
+        },
+        {
+          "label": "라이선스",
+          "status": "WARN",
+          "detail": "LICENSE 또는 LICENSE.md",
+          "weight": 1
+        },
+        {
+          "label": "저장소 URL",
+          "status": "PASS",
+          "detail": "https://github.com/gook-lab/portfolio",
+          "weight": 2
+        },
+        {
+          "label": "Git 상태",
+          "status": "PASS",
+          "detail": "fix/portfolio-accessible-labels · clean",
+          "weight": 1
+        },
+        {
+          "label": "데모 URL",
+          "status": "PASS",
+          "detail": "https://seonggukyoon-portfolio.vercel.app",
+          "weight": 1
+        }
+      ],
+      "committedAt": "2026-09-18T12:55:14+09:00",
+      "ageDays": 3
+    },
+    {
+      "id": "rhythm-godot",
+      "name": "Rhythm Godot",
+      "score": 77,
+      "checks": [
+        {
+          "label": "로컬 경로",
+          "status": "PASS",
+          "detail": "../rhythm-godot",
+          "weight": 2
+        },
+        {
+          "label": "package.json",
+          "status": "WARN",
+          "detail": "파일 없음",
+          "weight": 2
+        },
+        {
+          "label": "명령 · test",
+          "status": "PASS",
+          "detail": "bash tools/run_all_tests.sh",
+          "weight": 2
+        },
+        {
+          "label": "문서 · README.md",
+          "status": "PASS",
+          "detail": "README.md",
+          "weight": 1
+        },
+        {
+          "label": "문서 · project.godot",
+          "status": "PASS",
+          "detail": "project.godot",
+          "weight": 1
+        },
+        {
+          "label": "CI",
+          "status": "WARN",
+          "detail": ".github/workflows",
+          "weight": 1
+        },
+        {
+          "label": "라이선스",
+          "status": "PASS",
+          "detail": "LICENSE 또는 LICENSE.md",
+          "weight": 1
+        },
+        {
+          "label": "저장소 URL",
+          "status": "PASS",
+          "detail": "https://github.com/gook-lab/rhythm-godot",
+          "weight": 2
+        },
+        {
+          "label": "Git 상태",
+          "status": "PASS",
+          "detail": "develop · clean",
+          "weight": 1
+        }
+      ],
+      "committedAt": "2026-08-31T23:00:13+09:00",
+      "ageDays": 20
+    },
+    {
+      "id": "room-simulator",
+      "name": "Room Simulator",
+      "score": 94,
+      "checks": [
+        {
+          "label": "로컬 경로",
+          "status": "PASS",
+          "detail": "../roomcast",
+          "weight": 2
+        },
+        {
+          "label": "package.json",
+          "status": "PASS",
+          "detail": "room-simulator",
+          "weight": 2
+        },
+        {
+          "label": "명령 · lint",
+          "status": "PASS",
+          "detail": "npm run lint",
+          "weight": 1
+        },
+        {
+          "label": "명령 · test",
+          "status": "PASS",
+          "detail": "npm run test",
+          "weight": 2
+        },
+        {
+          "label": "명령 · build",
+          "status": "PASS",
+          "detail": "npm run build",
+          "weight": 2
+        },
+        {
+          "label": "문서 · README.md",
+          "status": "PASS",
+          "detail": "README.md",
+          "weight": 1
+        },
+        {
+          "label": "문서 · docs",
+          "status": "PASS",
+          "detail": "docs",
+          "weight": 1
+        },
+        {
+          "label": "CI",
+          "status": "WARN",
+          "detail": ".github/workflows",
+          "weight": 1
+        },
+        {
+          "label": "라이선스",
+          "status": "PASS",
+          "detail": "LICENSE 또는 LICENSE.md",
+          "weight": 1
+        },
+        {
+          "label": "저장소 URL",
+          "status": "PASS",
+          "detail": "https://github.com/gook-lab/room-simulator",
+          "weight": 2
+        },
+        {
+          "label": "Git 상태",
+          "status": "PASS",
+          "detail": "main · clean",
+          "weight": 1
+        }
+      ],
+      "committedAt": "2026-09-15T09:07:04+09:00",
+      "ageDays": 6
+    },
+    {
+      "id": "stock-pulse",
+      "name": "Stock Pulse",
+      "score": 100,
+      "checks": [
+        {
+          "label": "로컬 경로",
+          "status": "PASS",
+          "detail": "../stock-analysis",
+          "weight": 2
+        },
+        {
+          "label": "package.json",
+          "status": "PASS",
+          "detail": "stock-pulse",
+          "weight": 2
+        },
+        {
+          "label": "명령 · lint",
+          "status": "PASS",
+          "detail": "npm run lint",
+          "weight": 1
+        },
+        {
+          "label": "명령 · test",
+          "status": "PASS",
+          "detail": "npm run test",
+          "weight": 2
+        },
+        {
+          "label": "명령 · build",
+          "status": "PASS",
+          "detail": "npm run build",
+          "weight": 2
+        },
+        {
+          "label": "문서 · README.md",
+          "status": "PASS",
+          "detail": "README.md",
+          "weight": 1
+        },
+        {
+          "label": "문서 · docs",
+          "status": "PASS",
+          "detail": "docs",
+          "weight": 1
+        },
+        {
+          "label": "CI",
+          "status": "PASS",
+          "detail": ".github/workflows",
+          "weight": 1
+        },
+        {
+          "label": "라이선스",
+          "status": "PASS",
+          "detail": "LICENSE 또는 LICENSE.md",
+          "weight": 1
+        },
+        {
+          "label": "저장소 URL",
+          "status": "PASS",
+          "detail": "https://github.com/gook-lab/stock-pulse",
+          "weight": 2
+        },
+        {
+          "label": "Git 상태",
+          "status": "PASS",
+          "detail": "main · clean",
+          "weight": 1
+        }
+      ],
+      "committedAt": "2026-09-15T09:06:49+09:00",
+      "ageDays": 6
+    },
+    {
+      "id": "water-balloon-arcade",
+      "name": "Water Balloon Arcade",
+      "score": 86,
+      "checks": [
+        {
+          "label": "로컬 경로",
+          "status": "PASS",
+          "detail": "../water-balloon-arcade",
+          "weight": 2
+        },
+        {
+          "label": "package.json",
+          "status": "PASS",
+          "detail": "water-balloon-arcade",
+          "weight": 2
+        },
+        {
+          "label": "명령 · test",
+          "status": "PASS",
+          "detail": "npm run test",
+          "weight": 2
+        },
+        {
+          "label": "명령 · build",
+          "status": "PASS",
+          "detail": "npm run build",
+          "weight": 2
+        },
+        {
+          "label": "문서 · README.md",
+          "status": "PASS",
+          "detail": "README.md",
+          "weight": 1
+        },
+        {
+          "label": "CI",
+          "status": "WARN",
+          "detail": ".github/workflows",
+          "weight": 1
+        },
+        {
+          "label": "라이선스",
+          "status": "WARN",
+          "detail": "LICENSE 또는 LICENSE.md",
+          "weight": 1
+        },
+        {
+          "label": "저장소 URL",
+          "status": "PASS",
+          "detail": "https://github.com/gook-lab/water-balloon-arcade",
+          "weight": 2
+        },
+        {
+          "label": "Git 상태",
+          "status": "PASS",
+          "detail": "main · clean",
+          "weight": 1
+        }
+      ],
+      "committedAt": "2026-08-31T22:46:43+09:00",
+      "ageDays": 20
+    }
+  ]
+}

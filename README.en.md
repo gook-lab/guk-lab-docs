@@ -61,6 +61,25 @@ If yes, it belongs in that repository.
 | [repo-names](repo-names.md) | GitHub repository naming and license decisions |
 | `clone-all.sh` | Clone 12 public code repositories into the ignored `workspace/` directory |
 
+### Project operations
+
+`project-manifests/` keeps repository URLs, demos, and verification commands that otherwise
+drift across documents. The dependency-free CLI can inspect one project or the registered fleet.
+
+```bash
+node scripts/project-control.mjs audit pig-ma
+node scripts/project-control.mjs validate
+node scripts/project-control.mjs fleet
+node scripts/project-control.mjs context portfolio
+node scripts/project-control.mjs sync
+node scripts/project-control.mjs verify pig-ma
+node scripts/project-control.mjs links
+```
+
+`fleet` writes both `reports/project-health.md` and `reports/project-health.json`. The catalog
+covers the portfolio and all 12 public projects; locally available repositories also receive
+file, command, and documentation checks.
+
 ## Repository rules
 
 - Claims need evidence. Measurements include the date they were taken.

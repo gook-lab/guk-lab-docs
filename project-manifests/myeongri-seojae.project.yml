@@ -1,0 +1,13 @@
+{
+  "id": "myeongri-seojae",
+  "name": "명리서재",
+  "localPath": "../myeongri-seojae",
+  "repository": "https://github.com/gook-lab/myeongri-seojae",
+  "demo": "https://myeongri-seojae.vercel.app",
+  "status": "active",
+  "stack": ["React", "TypeScript", "Vite", "Zustand", "Vitest", "Playwright"],
+  "commands": { "lint": "pnpm lint", "typecheck": "pnpm typecheck", "test": "pnpm test", "build": "pnpm build" },
+  "docs": ["README.md", "docs"],
+  "metadataSources": ["README.md"],
+  "portfolio": { "featured": true }
+}
