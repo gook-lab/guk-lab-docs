@@ -1,0 +1,12 @@
+{
+  "id": "water-balloon-arcade",
+  "name": "Water Balloon Arcade",
+  "localPath": "../water-balloon-arcade",
+  "repository": "https://github.com/gook-lab/water-balloon-arcade",
+  "status": "maintenance",
+  "stack": ["React", "JavaScript", "Vite", "Canvas 2D", "Vitest"],
+  "commands": { "test": "npm run test", "build": "npm run build" },
+  "docs": ["README.md"],
+  "metadataSources": ["README.md"],
+  "portfolio": { "featured": false }
+}

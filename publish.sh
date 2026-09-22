@@ -20,11 +20,14 @@ REPOS=(
   "game|crypt-survivors|Vampire Survivors-style auto-battler roguelite in plain JS + PixiJS, with a headless balance harness"
   "dragon-game|dungeon-craft|Dragon Quest-style turn-based RPG in plain ESM + PixiJS — battle resolver is renderer-free and headless-testable"
   "stock-analysis|stock-pulse|PULSE — dark trading-terminal dashboard fusing Korean and US market data, with a 3D real-estate site map"
-  "saju|myeongri-seojae|명리서재 — 인생을 10년 단위 대운으로 펼쳐 보는 사주 사이트. 생년월일을 서버로 보내지 않는다"
+  "myeongri-seojae|myeongri-seojae|명리서재 — 인생을 10년 단위 대운으로 펼쳐 보는 사주 사이트. 생년월일을 서버로 보내지 않는다"
   "nihongo-app|nihongo|Japanese-learning PWA with an SM-2 spaced-repetition core, a mascot companion, and offline audio"
   "couple-app|couple-map|Mobile PWA for couples to pin places on a map and keep a shared timeline, letters and time capsules"
   "3d-map|osm-walker|Walk a chibi character through a low-poly 3D world extruded from real OpenStreetMap data"
   "rhythm-godot|rhythm-godot|One-button rhythm game in Godot 4 — every visual derives from a single audio clock, no tweens"
+  "roomcast|room-simulator|Floor-plan workspace with 2D editing and a React Three Fiber 3D view"
+  "water-balloon-arcade|water-balloon-arcade|Canvas 2D water-balloon arcade with a game loop outside React"
+  "design-system/modul|modul|React design system with shared tokens, headless Radix components, Storybook, and Vitest"
 )
 
 say() { printf '\n\033[1m%s\033[0m\n' "$*"; }

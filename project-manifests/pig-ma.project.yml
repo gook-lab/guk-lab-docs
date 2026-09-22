@@ -1,0 +1,18 @@
+{
+  "id": "pig-ma",
+  "name": "pig-ma",
+  "localPath": "../pig",
+  "repository": "https://github.com/gook-lab/pig-ma",
+  "demo": "https://pig-ma.vercel.app",
+  "status": "active",
+  "stack": ["React", "TypeScript", "Konva", "Zustand", "Storybook", "Vitest"],
+  "commands": {
+    "lint": "npm run lint",
+    "typecheck": "npm run typecheck",
+    "test": "npm run test",
+    "build": "npm run build"
+  },
+  "docs": ["README.md", "CLAUDE.md", "docs"],
+  "metadataSources": ["README.md"],
+  "portfolio": { "featured": true }
+}

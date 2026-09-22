@@ -1,0 +1,12 @@
+{
+  "id": "couple-map",
+  "name": "Couple Map",
+  "localPath": "../couple-app",
+  "repository": "https://github.com/gook-lab/couple-map",
+  "status": "active",
+  "stack": ["React", "TypeScript", "Vite", "Firebase", "Kakao Maps", "Vitest"],
+  "commands": { "lint": "npm run lint", "test": "npm run test", "build": "npm run build" },
+  "docs": ["README.md", "CLAUDE.md", "docs"],
+  "metadataSources": ["README.md"],
+  "portfolio": { "featured": true }
+}

@@ -213,6 +213,10 @@ for (const file of gitDocs() ?? walk(ROOT)) {
  * 비교는 git 로그 시각으로 합니다 — 파일 mtime 은 clone 하면 전부 같아집니다.
  */
 {
+  const changed = new Set(
+    spawnSync("git", ["diff", "--name-only", "HEAD"], { cwd: ROOT, encoding: "utf8" })
+      .stdout?.split("\n").filter(Boolean) ?? [],
+  );
   const lastCommit = f => {
     const r = spawnSync("git", ["log", "-1", "--format=%ct", "--", f], { cwd: ROOT, encoding: "utf8" });
     return Number(r.stdout?.trim() || 0);
@@ -220,6 +224,11 @@ for (const file of gitDocs() ?? walk(ROOT)) {
   for (const ko of (gitDocs() ?? walk(ROOT)).filter(f => /(^|\/)README\.md$/.test(relative(ROOT, f)))) {
     const en = ko.replace(/README\.md$/, "README.en.md");
     if (!existsSync(en)) continue;
+    const koRel = relative(ROOT, ko);
+    const enRel = relative(ROOT, en);
+    // 같은 작업에서 양쪽을 함께 고쳤다면 커밋 전에도 동기화된 것으로 봅니다.
+    // 커밋 시각만 비교하면 올바른 변경도 로컬 검사에서 실패합니다.
+    if (changed.has(koRel) && changed.has(enRel)) continue;
     const koAt = lastCommit(ko), enAt = lastCommit(en);
     if (koAt && enAt && koAt > enAt) {
       const days = Math.round((koAt - enAt) / 86400);

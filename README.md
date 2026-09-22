@@ -66,6 +66,25 @@
 | [repo-names](repo-names.md) | GitHub 레포 이름과 라이선스 배치 |
 | `clone-all.sh` | 공개 코드 저장소 12개를 `workspace/`로 클론 (gitignore 대상) |
 
+### 프로젝트 운영 검사
+
+`project-manifests/`는 여러 문서에서 반복되는 저장소·데모·검증 명령을 관리합니다.
+다음 명령으로 프로젝트 하나를 진단하거나 등록된 프로젝트를 함께 확인할 수 있습니다.
+
+```bash
+node scripts/project-control.mjs audit pig-ma
+node scripts/project-control.mjs validate
+node scripts/project-control.mjs fleet
+node scripts/project-control.mjs context portfolio
+node scripts/project-control.mjs sync
+node scripts/project-control.mjs verify pig-ma
+node scripts/project-control.mjs links
+```
+
+`fleet` 결과는 `reports/project-health.md`와 `reports/project-health.json`에 기록됩니다.
+포트폴리오와 공개 프로젝트 12개를 등록했으며, 로컬에 있는 저장소는 파일·명령·문서
+상태까지 함께 확인합니다.
+
 ## 이 저장소의 규칙
 
 - **근거 없는 문장은 쓰지 않습니다.** 수치를 적을 땐 언제 잰 건지도 같이 적습니다.

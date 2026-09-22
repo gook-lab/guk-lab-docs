@@ -1,0 +1,12 @@
+{
+  "id": "room-simulator",
+  "name": "Room Simulator",
+  "localPath": "../roomcast",
+  "repository": "https://github.com/gook-lab/room-simulator",
+  "status": "active",
+  "stack": ["React", "TypeScript", "React Three Fiber", "Vite", "Vitest"],
+  "commands": { "lint": "npm run lint", "test": "npm run test", "build": "npm run build" },
+  "docs": ["README.md", "docs"],
+  "metadataSources": ["README.md"],
+  "portfolio": { "featured": true }
+}

@@ -10,7 +10,7 @@
 | 로컬 디렉터리 | 공개 저장소 | 무엇 | 주요 기술 |
 |---|---|---|---|
 | `pig` | [pig-ma](https://github.com/gook-lab/pig-ma) | FigJam 스타일 React 무한 캔버스 라이브러리 | React · TypeScript · Konva · Zustand · Tiptap |
-| `saju` | [myeongri-seojae](https://github.com/gook-lab/myeongri-seojae) | 대운·오늘·궁합·신년 흐름을 로컬에서 계산하는 명리 서비스 | React 19 · TypeScript · Tailwind CSS · Zustand |
+| `myeongri-seojae` | [myeongri-seojae](https://github.com/gook-lab/myeongri-seojae) | 대운·오늘·궁합·신년 흐름을 로컬에서 계산하는 명리 서비스 | React 19 · TypeScript · Tailwind CSS · Zustand |
 | `stock-analysis` | [stock-pulse](https://github.com/gook-lab/stock-pulse) | 한국·미국 시황과 부동산 단지 정보를 보는 대시보드 | React · TypeScript · Vite · Node 프록시 · KIS SSE |
 | `rhythm-godot` | [rhythm-godot](https://github.com/gook-lab/rhythm-godot) | 오디오 클럭을 기준으로 판정하는 원버튼 리듬게임 | Godot · GDScript |
 | `dragon-game` | [dungeon-craft](https://github.com/gook-lab/dungeon-craft) | 렌더러와 전투 계산을 분리한 드래곤퀘스트풍 턴제 JRPG | JavaScript · PixiJS · Vite · Vitest |
