@@ -138,6 +138,20 @@ test("sync는 누락된 저장소와 데모 링크를 경고한다", () => {
   assert.notEqual(spawnSync(process.execPath, [setup.cli, "sync"], { cwd: setup.root }).status, 0);
 });
 
+test("sync는 manifest와 프로젝트 지도 수를 함께 기록한다", () => {
+  const setup = fixture();
+  writeFileSync(join(setup.root, "projects.md"), "# Projects\nhttps://github.com/gook-lab/fixture\n");
+  const output = runFixture(setup, "sync");
+  assert.match(output, /manifest: 1개/);
+  assert.match(output, /공개 프로젝트 지도: 1개/);
+});
+
+test("sync는 manifest에 없는 프로젝트 지도 항목을 경고한다", () => {
+  const setup = fixture();
+  writeFileSync(join(setup.root, "projects.md"), "https://github.com/gook-lab/fixture\nhttps://github.com/gook-lab/unregistered\n");
+  assert.notEqual(spawnSync(process.execPath, [setup.cli, "sync"], { cwd: setup.root }).status, 0);
+});
+
 test("비 Node 명령은 requiredPath로 검증한다", () => {
   const setup = fixture({ manifest: {
     id: "fixture", name: "Fixture", localPath: "fixture-project", kind: "godot",
@@ -193,7 +207,7 @@ test("incident와 readiness는 실행 가능한 체크리스트를 반환한다"
   assert.match(runFixture(setup, "readiness", "fixture"), /자동 진단 점수/);
 });
 
-test("links는 성공·HTTP 실패·네트워크 오류를 모두 기록한다", () => {
+test("links는 성공·HTTP 실패·네트워크 오류를 재시도하고 실패 코드로 종료한다", () => {
   const setup = fixture({ manifest: {
     id: "fixture", name: "Fixture", localPath: "fixture-project",
     repository: "https://github.com/gook-lab/fixture", demo: "https://demo.example.com",
@@ -210,10 +224,50 @@ test("links는 성공·HTTP 실패·네트워크 오류를 모두 기록한다",
     if (String(url).includes("demo")) return { status: 503, ok: false, url: String(url) };
     throw Object.assign(new Error("offline"), { name: "NetworkError" });
   };`);
-  const output = execFileSync(process.execPath, ["--import", preload, setup.cli, "links"], { cwd: setup.root, encoding: "utf8" });
-  const results = JSON.parse(output);
+  const execution = spawnSync(process.execPath, ["--import", preload, setup.cli, "links"], {
+    cwd: setup.root,
+    encoding: "utf8",
+    env: { ...process.env, PROJECT_CONTROL_LINK_RETRY_MS: "0" },
+  });
+  const results = JSON.parse(execution.stdout);
+  assert.notEqual(execution.status, 0);
   assert.equal(results[0].ok, true);
   assert.equal(results[1].status, 503);
+  assert.equal(results[1].attempts, 3);
   assert.equal(results[2].error, "NetworkError");
+  assert.equal(results[2].attempts, 3);
   assert.equal(JSON.parse(readFileSync(join(setup.root, "reports/external-links.json"))).results.length, 3);
+});
+
+test("links --report-only는 실패 링크를 기록해도 성공 코드로 종료한다", () => {
+  const setup = fixture();
+  const preload = join(setup.root, "fetch-mock.mjs");
+  writeFileSync(preload, "globalThis.fetch = async (url) => ({ status: 404, ok: false, url: String(url) });");
+  const execution = spawnSync(process.execPath, ["--import", preload, setup.cli, "links", "--report-only"], {
+    cwd: setup.root,
+    encoding: "utf8",
+    env: { ...process.env, PROJECT_CONTROL_LINK_RETRY_MS: "0" },
+  });
+  assert.equal(execution.status, 0);
+  assert.equal(JSON.parse(execution.stdout)[0].attempts, 1);
+});
+
+test("links는 일시적인 서버 오류가 회복되면 성공으로 기록한다", () => {
+  const setup = fixture();
+  const preload = join(setup.root, "fetch-mock.mjs");
+  writeFileSync(preload, `let calls = 0;
+globalThis.fetch = async (url) => {
+  calls += 1;
+  return calls < 3
+    ? { status: 503, ok: false, url: String(url) }
+    : { status: 200, ok: true, url: String(url) };
+};`);
+  const output = execFileSync(process.execPath, ["--import", preload, setup.cli, "links"], {
+    cwd: setup.root,
+    encoding: "utf8",
+    env: { ...process.env, PROJECT_CONTROL_LINK_RETRY_MS: "0" },
+  });
+  const [result] = JSON.parse(output);
+  assert.equal(result.ok, true);
+  assert.equal(result.attempts, 3);
 });

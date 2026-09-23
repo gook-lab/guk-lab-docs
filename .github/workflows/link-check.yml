@@ -1,0 +1,32 @@
+name: external-links
+
+on:
+  schedule:
+    - cron: "0 0 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: 공개 저장소와 데모 링크 확인
+        run: node scripts/project-control.mjs links
+
+      - name: 링크 검사 결과 보존
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: external-link-report
+          path: reports/external-links.json
+          if-no-files-found: error
+          retention-days: 30
