@@ -76,6 +76,7 @@
 node scripts/project-control.mjs audit pig-ma
 node scripts/project-control.mjs validate
 node scripts/project-control.mjs fleet
+node scripts/project-control.mjs summary
 node scripts/project-control.mjs context portfolio
 node scripts/project-control.mjs sync
 node scripts/project-control.mjs verify pig-ma
@@ -85,7 +86,10 @@ node scripts/project-control.mjs links
 `fleet` 결과는 `reports/project-health.md`와 `reports/project-health.json`에 기록됩니다.
 포트폴리오와 공개 프로젝트 12개를 등록했으며, 로컬에 있는 저장소는 파일·명령·문서
 상태까지 함께 확인합니다. CI는 상태 보고서를 14일간 보존하고, 매주 월요일 오전
-9시(KST)에 공개 저장소와 데모 링크를 다시 확인합니다.
+9시(KST)에 공개 저장소와 데모 링크를 다시 확인합니다. GitHub Actions의
+`project-verify`에서는 공개 프로젝트 하나를 선택해 실제 테스트·빌드 명령을 실행하고
+결과를 Job Summary와 Artifact에 남깁니다. Godot 검증은 CoreAudio를 사용하는 테스트에
+맞춰 macOS 러너에서 실행합니다.
 
 ## 이 저장소의 규칙
 

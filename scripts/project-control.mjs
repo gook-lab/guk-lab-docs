@@ -134,6 +134,28 @@ function markdownReport(results) {
   return `${lines.join("\n")}\n`;
 }
 
+function summaryReport(results) {
+  const warningProjects = results.filter((result) => result.checks.some((check) => check.status === "WARN"));
+  const lines = [
+    "## 프로젝트 상태 요약",
+    "",
+    `- 검사 프로젝트: ${results.length}개`,
+    `- 경고 프로젝트: ${warningProjects.length}개`,
+    "",
+    "| 프로젝트 | 점수 | 경고 |",
+    "|---|---:|---:|",
+    ...results.map((result) => `| ${result.name} | ${result.score} | ${result.checks.filter((check) => check.status === "WARN").length} |`),
+  ];
+  if (warningProjects.length) {
+    lines.push("", "<details>", "<summary>경고 상세</summary>", "");
+    for (const result of warningProjects) {
+      lines.push(`### ${result.name}`, "", ...result.checks.filter((check) => check.status === "WARN").map((check) => `- ${check.label}: ${check.detail}`), "");
+    }
+    lines.push("</details>");
+  }
+  return `${lines.join("\n")}\n`;
+}
+
 function writeReports(results) {
   mkdirSync(REPORT_DIR, { recursive: true });
   writeFileSync(join(REPORT_DIR, "project-health.json"), `${JSON.stringify({ generatedAt: new Date().toISOString(), projects: results }, null, 2)}\n`);
@@ -144,6 +166,20 @@ function findManifest(manifests, id) {
   const manifest = manifests.find((item) => item.id === id);
   if (!manifest) throw new Error(`프로젝트를 찾지 못했습니다: ${id}`);
   return manifest;
+}
+
+function workflowMetadata(manifest) {
+  const commands = Object.values(manifest.commands ?? {}).map(commandText);
+  const packageManager = commands.some((command) => command.startsWith("pnpm "))
+    ? "pnpm"
+    : commands.some((command) => command.startsWith("yarn ")) ? "yarn" : "npm";
+  return {
+    repository: manifest.repository.replace("https://github.com/", ""),
+    path: manifest.localPath.replace(/^\.\.\//, ""),
+    kind: manifest.kind ?? "node",
+    packageManager,
+    runtimeVersion: manifest.runtimeVersion ?? "",
+  };
 }
 
 function contextPack(manifest) {
@@ -296,13 +332,22 @@ try {
     console.log(`manifest ${manifests.length}개 검사 통과`);
   }
   else if (command === "audit") console.log(JSON.stringify(audit(findManifest(manifests, id)), null, 2));
-  else if (command === "verify") console.log(JSON.stringify(verify(findManifest(manifests, id)), null, 2));
+  else if (command === "verify") {
+    const report = verify(findManifest(manifests, id));
+    console.log(JSON.stringify(report, null, 2));
+    if (report.results.some((result) => result.status === "FAIL")) process.exitCode = 1;
+  }
   else if (command === "links") {
     const results = await checkLinks(manifests);
     console.log(JSON.stringify(results, null, 2));
     if (results.some((result) => !result.ok) && !process.argv.includes("--report-only")) process.exitCode = 1;
   }
   else if (command === "fleet") { const results = manifests.map(audit); writeReports(results); console.log(markdownReport(results)); }
+  else if (command === "summary") { const results = manifests.map(audit); writeReports(results); console.log(summaryReport(results)); }
+  else if (command === "workflow") {
+    const metadata = workflowMetadata(findManifest(manifests, id));
+    for (const [key, value] of Object.entries(metadata)) console.log(`${key}=${value}`);
+  }
   else if (command === "context") console.log(contextPack(findManifest(manifests, id)));
   else if (command === "sync") {
     const result = syncReport(manifests);
@@ -312,7 +357,7 @@ try {
   else if (command === "incident") console.log(incidentTemplate(findManifest(manifests, id), rest.join(" ") || "오류 재현"));
   else if (command === "readiness") console.log(readiness(findManifest(manifests, id)));
   else {
-    console.log("사용: project-control <validate|audit|verify|links|fleet|context|sync|incident|readiness> [project-id] [--report-only]");
+    console.log("사용: project-control <validate|audit|verify|links|fleet|summary|workflow|context|sync|incident|readiness> [project-id] [--report-only]");
     console.log(`프로젝트: ${manifests.map((item) => item.id).join(", ")}`);
   }
 } catch (error) {

@@ -5,8 +5,12 @@
   "repository": "https://github.com/gook-lab/rhythm-godot",
   "status": "maintenance",
   "kind": "godot",
+  "runtimeVersion": "4.7.0",
   "stack": ["Godot", "GDScript", "Python"],
-  "commands": { "test": { "run": "bash tools/run_all_tests.sh", "requiredPath": "tools/run_all_tests.sh" } },
+  "commands": {
+    "prepare": { "run": "bash tools/gen_all.sh", "requiredPath": "tools/gen_all.sh" },
+    "test": { "run": "bash tools/run_all_tests.sh", "requiredPath": "tools/run_all_tests.sh" }
+  },
   "docs": ["README.md", "project.godot"],
   "metadataSources": ["README.md"],
   "portfolio": { "featured": false }
