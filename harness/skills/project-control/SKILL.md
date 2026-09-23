@@ -14,6 +14,8 @@ description: Audit guk-lab projects from project manifests, create fleet health 
 node scripts/project-control.mjs audit pig-ma
 node scripts/project-control.mjs validate
 node scripts/project-control.mjs fleet
+node scripts/project-control.mjs summary
+node scripts/project-control.mjs workflow pig-ma
 node scripts/project-control.mjs verify pig-ma
 node scripts/project-control.mjs links
 node scripts/project-control.mjs context portfolio
@@ -28,6 +30,10 @@ node scripts/project-control.mjs readiness dungeon-craft
 요청을 보내므로 네트워크 검사가 필요할 때만 사용합니다. 429·5xx·네트워크 오류는
 최대 3회 확인하고, 끝까지 응답하지 않은 링크가 있으면 실패 코드로 종료합니다. 결과만
 기록하고 후속 작업을 계속해야 할 때는 `links --report-only`를 사용합니다.
+
+`summary`는 GitHub Actions Job Summary에 붙일 수 있는 표를 출력합니다. `workflow`는
+선택한 저장소를 별도 작업으로 체크아웃할 때 필요한 저장소·경로·실행 환경 정보를
+`key=value` 형식으로 반환합니다.
 
 ## manifest 갱신
 

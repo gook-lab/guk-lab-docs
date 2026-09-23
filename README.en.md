@@ -71,6 +71,7 @@ drift across documents. The dependency-free CLI can inspect one project or the r
 node scripts/project-control.mjs audit pig-ma
 node scripts/project-control.mjs validate
 node scripts/project-control.mjs fleet
+node scripts/project-control.mjs summary
 node scripts/project-control.mjs context portfolio
 node scripts/project-control.mjs sync
 node scripts/project-control.mjs verify pig-ma
@@ -80,7 +81,10 @@ node scripts/project-control.mjs links
 `fleet` writes both `reports/project-health.md` and `reports/project-health.json`. The catalog
 covers the portfolio and all 12 public projects; locally available repositories also receive
 file, command, and documentation checks. CI retains health reports for 14 days and rechecks
-public repository and demo links every Monday at 09:00 KST.
+public repository and demo links every Monday at 09:00 KST. The manual `project-verify`
+workflow runs the selected public project's test and build commands, then writes the result to
+the job summary and an artifact. Godot verification uses a macOS runner because its timing tests
+depend on CoreAudio.
 
 ## Repository rules
 

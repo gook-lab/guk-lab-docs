@@ -1,0 +1,161 @@
+name: project-verify
+
+on:
+  workflow_dispatch:
+    inputs:
+      project:
+        description: 검증할 공개 프로젝트
+        required: true
+        type: choice
+        options:
+          - couple-map
+          - crypt-survivors
+          - dungeon-craft
+          - modul
+          - myeongri-seojae
+          - nihongo
+          - osm-walker
+          - pig-ma
+          - rhythm-godot
+          - room-simulator
+          - stock-pulse
+          - water-balloon-arcade
+
+permissions:
+  contents: read
+
+jobs:
+  metadata:
+    runs-on: ubuntu-latest
+    outputs:
+      repository: ${{ steps.project.outputs.repository }}
+      path: ${{ steps.project.outputs.path }}
+      kind: ${{ steps.project.outputs.kind }}
+      package_manager: ${{ steps.project.outputs.packageManager }}
+      runtime_version: ${{ steps.project.outputs.runtimeVersion }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - id: project
+        name: 프로젝트 실행 정보 확인
+        run: node scripts/project-control.mjs workflow "${{ inputs.project }}" >> "$GITHUB_OUTPUT"
+
+  node:
+    needs: metadata
+    if: needs.metadata.outputs.kind == 'node'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          path: guk-lab-docs
+
+      - uses: actions/checkout@v7
+        with:
+          repository: ${{ needs.metadata.outputs.repository }}
+          path: ${{ needs.metadata.outputs.path }}
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          package-manager-cache: false
+
+      - name: 의존성 설치
+        working-directory: ${{ needs.metadata.outputs.path }}
+        env:
+          PACKAGE_MANAGER: ${{ needs.metadata.outputs.package_manager }}
+        run: |
+          case "$PACKAGE_MANAGER" in
+            pnpm)
+              corepack enable
+              pnpm install --frozen-lockfile
+              ;;
+            yarn)
+              corepack enable
+              yarn install --immutable || yarn install --frozen-lockfile
+              ;;
+            npm)
+              if [ -f package-lock.json ]; then npm ci; else npm install; fi
+              ;;
+          esac
+
+      - name: manifest 검증 명령 실행
+        run: node guk-lab-docs/scripts/project-control.mjs verify "${{ inputs.project }}"
+
+      - name: 검증 결과 요약
+        if: always()
+        env:
+          REPORT: guk-lab-docs/reports/verification-${{ inputs.project }}.json
+        run: |
+          node - <<'NODE' >> "$GITHUB_STEP_SUMMARY"
+          const fs = require("node:fs");
+          const file = process.env.REPORT;
+          console.log(`## ${process.env.GITHUB_WORKFLOW} · ${process.env.REPORT.split("verification-")[1].replace(".json", "")}`);
+          if (!fs.existsSync(file)) {
+            console.log("\n검증 보고서가 생성되기 전에 작업이 중단됐습니다.");
+            process.exit(0);
+          }
+          const report = JSON.parse(fs.readFileSync(file, "utf8"));
+          console.log("\n| 명령 | 상태 | 시간 |\n|---|---|---:|");
+          for (const result of report.results) console.log(`| ${result.name} | ${result.status} | ${result.durationMs}ms |`);
+          NODE
+
+      - name: 검증 보고서 보존
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: verification-${{ inputs.project }}
+          path: guk-lab-docs/reports/verification-${{ inputs.project }}.json
+          if-no-files-found: warn
+          retention-days: 14
+
+  godot:
+    needs: metadata
+    if: needs.metadata.outputs.kind == 'godot'
+    runs-on: macos-15
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          path: guk-lab-docs
+
+      - uses: actions/checkout@v7
+        with:
+          repository: ${{ needs.metadata.outputs.repository }}
+          path: ${{ needs.metadata.outputs.path }}
+
+      - uses: chickensoft-games/setup-godot@v2
+        with:
+          version: ${{ needs.metadata.outputs.runtime_version }}
+          use-dotnet: false
+          include-templates: false
+
+      - name: manifest 검증 명령 실행
+        run: node guk-lab-docs/scripts/project-control.mjs verify "${{ inputs.project }}"
+
+      - name: 검증 결과 요약
+        if: always()
+        env:
+          REPORT: guk-lab-docs/reports/verification-${{ inputs.project }}.json
+        run: |
+          node - <<'NODE' >> "$GITHUB_STEP_SUMMARY"
+          const fs = require("node:fs");
+          const file = process.env.REPORT;
+          console.log(`## ${process.env.GITHUB_WORKFLOW} · ${process.env.REPORT.split("verification-")[1].replace(".json", "")}`);
+          if (!fs.existsSync(file)) {
+            console.log("\n검증 보고서가 생성되기 전에 작업이 중단됐습니다.");
+            process.exit(0);
+          }
+          const report = JSON.parse(fs.readFileSync(file, "utf8"));
+          console.log("\n| 명령 | 상태 | 시간 |\n|---|---|---:|");
+          for (const result of report.results) console.log(`| ${result.name} | ${result.status} | ${result.durationMs}ms |`);
+          NODE
+
+      - name: 검증 보고서 보존
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: verification-${{ inputs.project }}
+          path: guk-lab-docs/reports/verification-${{ inputs.project }}.json
+          if-no-files-found: warn
+          retention-days: 14

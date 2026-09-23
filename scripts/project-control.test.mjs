@@ -126,6 +126,27 @@ test("fleet은 Markdown과 JSON 상태 보고서를 생성한다", () => {
   assert.equal(JSON.parse(readFileSync(join(setup.root, "reports/project-health.json"))).projects[0].id, "fixture");
 });
 
+test("summary는 Actions에서 읽을 수 있는 상태 표와 경고 상세를 만든다", () => {
+  const setup = fixture();
+  const output = runFixture(setup, "summary");
+  assert.match(output, /프로젝트 상태 요약/);
+  assert.match(output, /\| Fixture \|/);
+  assert.match(output, /<details>/);
+});
+
+test("workflow는 선택 프로젝트의 checkout 메타데이터를 반환한다", () => {
+  const setup = fixture({ manifest: {
+    id: "fixture", name: "Fixture", localPath: "../fixture-project",
+    repository: "https://github.com/gook-lab/fixture", status: "active", stack: ["Node.js"], docs: [],
+    commands: { test: "pnpm test" },
+  } });
+  const output = runFixture(setup, "workflow", "fixture");
+  assert.match(output, /^repository=gook-lab\/fixture$/m);
+  assert.match(output, /^path=fixture-project$/m);
+  assert.match(output, /^kind=node$/m);
+  assert.match(output, /^packageManager=pnpm$/m);
+});
+
 test("sync는 누락된 저장소와 데모 링크를 경고한다", () => {
   const setup = fixture({ manifest: {
     id: "fixture", name: "Fixture", localPath: "fixture-project",
@@ -186,7 +207,9 @@ test("verify는 실패한 명령에서 멈추고 결과를 저장한다", () => 
     repository: "https://github.com/gook-lab/fixture", status: "active", stack: ["Node.js"], docs: [],
     commands: { lint: "node -e \"process.exit(0)\"", test: "node -e \"process.exit(2)\"", build: "node -e \"process.exit(0)\"" },
   } });
-  const report = JSON.parse(runFixture(setup, "verify", "fixture"));
+  const execution = spawnSync(process.execPath, [setup.cli, "verify", "fixture"], { cwd: setup.root, encoding: "utf8" });
+  const report = JSON.parse(execution.stdout);
+  assert.notEqual(execution.status, 0);
   assert.deepEqual(report.results.map(({ status }) => status), ["PASS", "FAIL"]);
   assert.equal(JSON.parse(readFileSync(join(setup.root, "reports/verification-fixture.json"))).results.length, 2);
 });
