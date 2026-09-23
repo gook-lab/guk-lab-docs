@@ -130,6 +130,12 @@ jobs:
           use-dotnet: false
           include-templates: false
 
+      - name: 생성 도구 Python 환경 준비
+        run: |
+          python3 -m venv "$RUNNER_TEMP/rhythm-python"
+          "$RUNNER_TEMP/rhythm-python/bin/pip" install numpy
+          echo "$RUNNER_TEMP/rhythm-python/bin" >> "$GITHUB_PATH"
+
       - name: manifest 검증 명령 실행
         run: node guk-lab-docs/scripts/project-control.mjs verify "${{ inputs.project }}"
 
