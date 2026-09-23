@@ -35,3 +35,12 @@ jobs:
           node scripts/project-control.mjs validate
           node scripts/project-control.mjs fleet
           node scripts/project-control.mjs sync
+
+      - name: 프로젝트 상태 보고서 보존
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: project-control-reports
+          path: reports/
+          if-no-files-found: warn
+          retention-days: 14

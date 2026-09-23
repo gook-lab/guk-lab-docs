@@ -162,6 +162,10 @@ function contextPack(manifest) {
 
 function syncReport(manifests) {
   const projectsDoc = readFileSync(join(ROOT, "projects.md"), "utf8");
+  const catalogRepositories = new Set(manifests.filter((item) => item.catalog !== false).map((item) => item.repository));
+  const documentedRepositories = new Set(projectsDoc.match(/https:\/\/github\.com\/gook-lab\/[a-z0-9-]+/g) ?? []);
+  const missingFromDocument = [...catalogRepositories].filter((repository) => !documentedRepositories.has(repository));
+  const missingFromManifests = [...documentedRepositories].filter((repository) => !catalogRepositories.has(repository));
   const portfolioManifest = manifests.find((item) => item.id === "portfolio");
   const portfolioRoot = portfolioManifest ? projectRoot(portfolioManifest) : null;
   const portfolioDocuments = portfolioRoot
@@ -169,7 +173,21 @@ function syncReport(manifests) {
         .filter((file) => existsSync(join(portfolioRoot, file)))
         .map((file) => readFileSync(join(portfolioRoot, file), "utf8"))
     : [];
-  const lines = ["# 프로젝트 정보 동기화 검사", "", `생성 시각: ${new Date().toISOString()}`, "", "저장소 링크는 프로젝트 지도, 데모 링크는 각 프로젝트 문서, 포트폴리오 링크는 한·영 콘텐츠와 비교했습니다.", "", "| 프로젝트 | 저장소 | 데모 | 포트폴리오 | 결과 |", "|---|---|---|---|---|"];
+  const lines = [
+    "# 프로젝트 정보 동기화 검사",
+    "",
+    `생성 시각: ${new Date().toISOString()}`,
+    "",
+    `- manifest: ${manifests.length}개`,
+    `- 공개 프로젝트 지도: ${catalogRepositories.size}개`,
+    `- 포트폴리오 대표 프로젝트: ${manifests.filter((item) => item.portfolio?.featured).length}개`,
+    "",
+    "저장소 링크는 프로젝트 지도, 데모 링크는 각 프로젝트 문서, 포트폴리오 링크는 한·영 콘텐츠와 비교했습니다.",
+    "",
+    "| 프로젝트 | 저장소 | 데모 | 포트폴리오 | 결과 |",
+    "|---|---|---|---|---|",
+  ];
+  let warnings = missingFromDocument.length + missingFromManifests.length;
   for (const manifest of manifests) {
     const localProjectExists = existsSync(projectRoot(manifest));
     const metadata = (manifest.metadataSources ?? ["README.md"])
@@ -180,12 +198,14 @@ function syncReport(manifests) {
     const demoState = !manifest.demo ? "PASS" : !localProjectExists ? "SKIP" : metadata.includes(manifest.demo) ? "PASS" : "WARN";
     const portfolioState = !manifest.portfolio?.featured ? "PASS" : portfolioDocuments.length === 0 ? "SKIP" : portfolioDocuments.every((document) => document.includes(manifest.repository)) ? "PASS" : "WARN";
     const notes = [!repoOk && "projects.md 저장소 링크 누락", demoState === "WARN" && "프로젝트 메타데이터 문서에 데모 링크 누락", portfolioState === "WARN" && "포트폴리오 한·영 링크 누락"].filter(Boolean);
+    warnings += notes.length;
     lines.push(`| ${manifest.name} | ${repoOk ? "PASS" : "WARN"} | ${demoState} | ${portfolioState} | ${notes.join(", ") || (demoState === "SKIP" || portfolioState === "SKIP" ? "로컬 저장소가 없어 일부 검사 생략" : "일치")} |`);
   }
+  if (missingFromManifests.length) lines.push("", "## manifest에 없는 프로젝트 지도 항목", "", ...missingFromManifests.map((repository) => `- ${repository}`));
   mkdirSync(REPORT_DIR, { recursive: true });
   const output = `${lines.join("\n")}\n`;
   writeFileSync(join(REPORT_DIR, "portfolio-sync.md"), output);
-  return { output, warnings: lines.filter((line) => line.includes("WARN")).length };
+  return { output, warnings };
 }
 
 function verify(manifest) {
@@ -207,6 +227,30 @@ function verify(manifest) {
   return report;
 }
 
+function shouldRetryLink(status) {
+  return status === 429 || status >= 500;
+}
+
+async function fetchLink(target, attempts = 3) {
+  const retryDelayMs = Number(process.env.PROJECT_CONTROL_LINK_RETRY_MS ?? 500);
+  let result;
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 10_000);
+    try {
+      const response = await fetch(target.url, { method: "GET", redirect: "follow", signal: controller.signal, headers: { "user-agent": "guk-lab-project-control/1.0" } });
+      result = { ...target, status: response.status, ok: response.ok, finalUrl: response.url, attempts: attempt };
+      if (response.ok || !shouldRetryLink(response.status)) return result;
+    } catch (error) {
+      result = { ...target, status: null, ok: false, error: error.name, attempts: attempt };
+    } finally {
+      clearTimeout(timer);
+    }
+    if (attempt < attempts && retryDelayMs > 0) await new Promise((resolveDelay) => setTimeout(resolveDelay, retryDelayMs * attempt));
+  }
+  return result;
+}
+
 async function checkLinks(manifests) {
   const targets = manifests.flatMap((manifest) => [
     ...(manifest.visibility === "private" ? [] : [{ project: manifest.id, kind: "repository", url: manifest.repository }]),
@@ -218,16 +262,7 @@ async function checkLinks(manifests) {
     while (nextIndex < targets.length) {
       const index = nextIndex++;
       const target = targets[index];
-      const controller = new AbortController();
-      const timer = setTimeout(() => controller.abort(), 10_000);
-      try {
-        const response = await fetch(target.url, { method: "GET", redirect: "follow", signal: controller.signal, headers: { "user-agent": "guk-lab-project-control/1.0" } });
-        results[index] = { ...target, status: response.status, ok: response.ok, finalUrl: response.url };
-      } catch (error) {
-        results[index] = { ...target, status: null, ok: false, error: error.name };
-      } finally {
-        clearTimeout(timer);
-      }
+      results[index] = await fetchLink(target);
     }
   }
   await Promise.all(Array.from({ length: Math.min(5, targets.length) }, () => worker()));
@@ -262,7 +297,11 @@ try {
   }
   else if (command === "audit") console.log(JSON.stringify(audit(findManifest(manifests, id)), null, 2));
   else if (command === "verify") console.log(JSON.stringify(verify(findManifest(manifests, id)), null, 2));
-  else if (command === "links") console.log(JSON.stringify(await checkLinks(manifests), null, 2));
+  else if (command === "links") {
+    const results = await checkLinks(manifests);
+    console.log(JSON.stringify(results, null, 2));
+    if (results.some((result) => !result.ok) && !process.argv.includes("--report-only")) process.exitCode = 1;
+  }
   else if (command === "fleet") { const results = manifests.map(audit); writeReports(results); console.log(markdownReport(results)); }
   else if (command === "context") console.log(contextPack(findManifest(manifests, id)));
   else if (command === "sync") {
@@ -273,7 +312,7 @@ try {
   else if (command === "incident") console.log(incidentTemplate(findManifest(manifests, id), rest.join(" ") || "오류 재현"));
   else if (command === "readiness") console.log(readiness(findManifest(manifests, id)));
   else {
-    console.log("사용: project-control <validate|audit|verify|links|fleet|context|sync|incident|readiness> [project-id]");
+    console.log("사용: project-control <validate|audit|verify|links|fleet|context|sync|incident|readiness> [project-id] [--report-only]");
     console.log(`프로젝트: ${manifests.map((item) => item.id).join(", ")}`);
   }
 } catch (error) {

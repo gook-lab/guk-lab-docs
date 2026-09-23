@@ -3,6 +3,7 @@
 [한국어](README.md) · [English](README.en.md)
 
 This repository collects patterns that kept reappearing while I built 15 toy projects.
+Thirteen manifests track the 12 currently public projects and the portfolio.
 
 Project-specific documents stay beside their code. A project's `README.md`, `CLAUDE.md`, and
 `docs/` change with the implementation, so copying them here would create stale duplicates.
@@ -78,7 +79,8 @@ node scripts/project-control.mjs links
 
 `fleet` writes both `reports/project-health.md` and `reports/project-health.json`. The catalog
 covers the portfolio and all 12 public projects; locally available repositories also receive
-file, command, and documentation checks.
+file, command, and documentation checks. CI retains health reports for 14 days and rechecks
+public repository and demo links every Monday at 09:00 KST.
 
 ## Repository rules
 
