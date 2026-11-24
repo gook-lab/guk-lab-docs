@@ -35,6 +35,7 @@
 | [headless-harness](playbooks/headless-harness.md) | 시뮬레이션과 렌더러의 분리로 얻는 게임 헤드리스 검증 |
 | [balance-harness](playbooks/balance-harness.md) | 게임 난이도 조정 — 실력별 가상 플레이어 · 합격선 파일 · 수치 덮어쓰기 실험 |
 | [game-build-prompt](playbooks/game-build-prompt.md) | 게임 제작 프롬프트 틀 — 우선순위 · 숫자 목표 · 화면만 보는 비평가 · 끝 조건 |
+| [game-demo-release](playbooks/game-demo-release.md) | 게임 공개 데모 마감 — 시작 · 실패 화면 · 소리 풀기 · 익명 판 기록 · 용량 · 휴대폰 화면 |
 | [verification-gate](playbooks/verification-gate.md) | 기존 부채는 베이스라인으로 고정, **늘어난 것만** 실패 처리 |
 | [cross-session-collab](playbooks/cross-session-collab.md) | 두 에이전트 세션이 한 레포에서 같이 일하는 법 |
 | [publishing](playbooks/publishing.md) | 공개 전 확인 목록 — 상용 에셋·용량·비밀정보 |
