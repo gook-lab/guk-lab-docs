@@ -29,6 +29,7 @@ If yes, it belongs in that repository.
 | [measure-first](playbooks/measure-first.md) | Measure before changing code and preserve the measured result in the commit |
 | [headless-harness](playbooks/headless-harness.md) | Verify game simulations independently from their renderers |
 | [balance-harness](playbooks/balance-harness.md) | Tune game difficulty with skill-tiered virtual players, a targets file, and override experiments |
+| [game-demo-release](playbooks/game-demo-release.md) | Finish a public game demo: loading and failure screens, audio unlock, anonymous run records, download size, and phone layouts |
 | [verification-gate](playbooks/verification-gate.md) | Baseline existing debt and fail only when it grows |
 | [cross-session-collab](playbooks/cross-session-collab.md) | Coordinate two agent sessions working in one repository |
 | [publishing](playbooks/publishing.md) | Check assets, repository size, and secrets before publishing |
