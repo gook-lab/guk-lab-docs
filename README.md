@@ -33,6 +33,7 @@
 |---|---|
 | [measure-first](playbooks/measure-first.md) | 추측으로 고치지 않기 — 고치기 전에 측정, 잰 숫자는 커밋에 기록 |
 | [headless-harness](playbooks/headless-harness.md) | 시뮬레이션과 렌더러의 분리로 얻는 게임 헤드리스 검증 |
+| [game-build-prompt](playbooks/game-build-prompt.md) | 게임 제작 프롬프트 틀 — 우선순위 · 숫자 목표 · 화면만 보는 비평가 · 끝 조건 |
 | [verification-gate](playbooks/verification-gate.md) | 기존 부채는 베이스라인으로 고정, **늘어난 것만** 실패 처리 |
 | [cross-session-collab](playbooks/cross-session-collab.md) | 두 에이전트 세션이 한 레포에서 같이 일하는 법 |
 | [publishing](playbooks/publishing.md) | 공개 전 확인 목록 — 상용 에셋·용량·비밀정보 |
