@@ -61,6 +61,9 @@ autoload가 없어서 통합 테스트는 씬으로만 돌아갑니다. `spire-g
 `*.expected.json`을 gitignore 하고 `./tools/gen_all.sh`로 재생성합니다 — 새로
 클론하면 이걸 먼저 돌려야 합니다.
 
+하네스가 돌아간 뒤 난이도를 맞추는 절차(실력별 가상 플레이어 · 합격선 · 수치
+덮어쓰기)는 [balance-harness](balance-harness.md)에 따로 정리했습니다.
+
 ## 이 패턴을 안 쓰는 프로젝트
 
 `pig` 같은 앱은 렌더러가 곧 제품이라 이 분리가 성립하지 않습니다. 대신 같은
