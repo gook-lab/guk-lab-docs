@@ -36,6 +36,7 @@
 | [balance-harness](playbooks/balance-harness.md) | 게임 난이도 조정 — 실력별 가상 플레이어 · 합격선 파일 · 수치 덮어쓰기 실험 |
 | [game-build-prompt](playbooks/game-build-prompt.md) | 게임 제작 프롬프트 틀 — 우선순위 · 숫자 목표 · 화면만 보는 비평가 · 끝 조건 |
 | [game-demo-release](playbooks/game-demo-release.md) | 게임 공개 데모 마감 — 시작 · 실패 화면 · 소리 풀기 · 익명 판 기록 · 용량 · 휴대폰 화면 |
+| [game-asset-hub](playbooks/game-asset-hub.md) | 게임 공용 에셋 허브 — 묶음 카탈로그 · Release zip · 골라 받기 · 라이선스 허용 목록 |
 | [verification-gate](playbooks/verification-gate.md) | 기존 부채는 베이스라인으로 고정, **늘어난 것만** 실패 처리 |
 | [cross-session-collab](playbooks/cross-session-collab.md) | 두 에이전트 세션이 한 레포에서 같이 일하는 법 |
 | [publishing](playbooks/publishing.md) | 공개 전 확인 목록 — 상용 에셋·용량·비밀정보 |
@@ -66,7 +67,7 @@
 
 | 문서 | 한 줄 |
 |---|---|
-| [projects](projects.md) | 로컬 프로젝트와 공개 저장소 — 이름·역할·공개 여부 |
+| [projects](projects.md) | 로컬 프로젝트와 공개 저장소 — 이름·역할·공개 여부, FEYS 아케이드 · 에셋 허브 업데이트 기록 |
 | [repo-names](repo-names.md) | GitHub 레포 이름과 라이선스 배치 |
 | `clone-all.sh` | 공개 코드 저장소 12개를 `workspace/`로 클론 (gitignore 대상) |
 
