@@ -25,6 +25,41 @@
 저장소 이름과 로컬 디렉터리가 다른 이유는 [repo-names.md](repo-names.md)에
 기록했습니다. 위 12개 저장소는 `clone-all.sh`로 한 번에 받을 수 있습니다.
 
+## 게임 허브 · 에셋 허브 — 비공개 저장소 2곳 (2026-11-27 추가)
+
+게임이 늘면서 둘을 따로 만들었습니다. 저장소는 비공개이고, 공개 주소로 화면만
+열어 두었습니다.
+
+| 로컬 디렉터리 | 저장소(비공개) | 공개 주소 | 무엇 | 주요 기술 |
+|---|---|---|---|---|
+| `game-hub` | `gook-lab/feys-arcade` | [feys-arcade.vercel.app](https://feys-arcade.vercel.app) | gook-lab 게임 · 데모 진열 아케이드 — 게임 14개(라이브 12 · 쉬는 중 2) | React · TypeScript · Vite · Vercel 함수 1개 |
+| `feys-game-assets` | `gook-lab/feys-game-assets` | [feys-assets.vercel.app](https://feys-assets.vercel.app) | 게임 공용 에셋 허브 — 묶음 63개 · 압축 160.8MB, 갤러리 위키 | Node 도구 · GitHub Releases · React 갤러리 |
+
+### FEYS 아케이드 — 업데이트 기록
+
+| 날짜 | 바뀐 것 |
+|---|---|
+| 2026-11-26 | 첫 배포 — 오락실 캐비닛 진열 · 게임 상세 창(조작법 · 패치 노트) · `/go/<slug>` 클릭 집계 · 정적 404 |
+| 2026-11-26 저녁 | 부팅 화면 INSERT COIN · 404 GAME OVER · 고장 화면 · 생성 배경 그림 · 한국어/영어(`?lang=en`) |
+| 2026-11-26 밤 | 본문 벽지 · 커서 꼬리 · 의견 · 버그 폼(서버 함수 `api/contact.ts`, Resend REST) |
+| 2026-11-27 | 게임 키 아트 표지 · 의견 폼 초안 보존 · 칸별 오류 · 입력 테 대비 3.46:1 · 상단 메뉴 44px · 글자 크기 토큰 |
+
+- 관리 보드는 로컬에서만 엽니다. 공개 번들에 내부 메모와 비공개 저장소 이름이
+  들어가지 않게 `games.internal.ts` 를 따로 두고, 빌드 끝에
+  `tools/check-public-bundle.mjs` 가 빠졌는지 확인합니다.
+- 배포 전에 `pnpm sync` 로 각 게임의 배포 날짜를 맞춥니다. 빠뜨리면 카드 날짜가
+  패치 노트 날짜보다 늦게 찍힙니다.
+- `index.html` 이나 앱 CSS 가 `body` 배경을 칠하면 고정 층으로 깐 벽지가
+  가려졌습니다. 벽지는 `body::before` 한 곳에서만 칠합니다.
+
+### 에셋 허브 — 2026-11-27 첫 적재
+
+- KayKit 무료 등급 25 · Kenney 9 · 그 밖의 CC0 · OFL · MIT 5묶음과, gook-lab 게임
+  8개(lantern-keep · crypt-survivors · moonhalo · rift-dungeon · water-balloon-arcade
+  · oil-traveler · dungeon-craft · rhythm-godot)에서 모은 자체 제작 24묶음입니다.
+- 받는 법 · 넣는 법 · 라이선스 허용 목록은
+  [playbooks/game-asset-hub.md](playbooks/game-asset-hub.md) 에 적었습니다.
+
 ## 공개하지 않는 것들
 
 **Unity 3종 — 2026-08-22에 제외로 결정했습니다.** 유료 에셋 스토어 패키지가
